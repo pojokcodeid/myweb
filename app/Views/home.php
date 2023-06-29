@@ -25,87 +25,34 @@
     </p>
   </div>
   <div class="row">
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-4 col-md-6 mb-4">
-      <a href="#" class="text-decoration-none">
-        <div class="shadow-sm card border-left-primary h-100 py-2 bg-body border-0">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center ">
-              <div class="col mr-2 ">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Front End</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  <p class="lead">
-                    <small>
-                      Baca tutorial untuk front end developer, seperti HTML, CSS, Javascript, Bootstrap, React JS,
-                      Vue
-                      Js
-                      dan masih banayk lagi ...
-                    </small>
-                  </p>
+    <!-- group kategori -->
+    <?php foreach ($groupKategori as $group): ?>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <a href="#" class="text-decoration-none">
+          <div class="shadow-sm card <?= $group['line_color'] ?> h-100 py-2 bg-body border-0">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center ">
+                <div class="col mr-2 ">
+                  <div class="text-xs font-weight-bold <?= $group['text_color'] ?> text-uppercase mb-1">
+                    <?= $group['nama_group'] ?>
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <p class="lead">
+                      <small>
+                        <?= $group['resume'] ?>
+                      </small>
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="col-auto">
-                <i class="bi bi-code-square text-primary" style="font-size: 100px;opacity: 0.5 !important"></i>
+                <div class="col-auto cat">
+                  <?= $group['icon'] ?>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-4 col-md-6 mb-4">
-      <a href="#" class="text-decoration-none">
-        <div class="shadow-sm card border-left-warning h-100 py-2 bg-body border-0">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Back End</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  <p class="lead">
-                    <small>
-                      Baca tutorial untuk back end developer, seperti PHP, Java, Javascript, Python, Typescript, C++
-                      dan masih banayk lagi ...
-                    </small>
-                  </p>
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="bi bi-filetype-php text-warning" style="font-size: 100px;opacity: 0.5 !important"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-4 col-md-6 mb-4">
-      <a href="#" class="text-decoration-none">
-        <div class="shadow-sm card border-left-info h-100 py-2 bg-body border-0">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                  Database
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  <p class="lead">
-                    <small>
-                      Baca tutorial untuk database, seperti MySQL, SQL Server, MariaDB, MongoDB, PostgreSQL dan
-                      masih
-                      banayk lagi ...
-                    </small>
-                  </p>
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="bi bi-database-check text-info" style="font-size: 100px;opacity: 0.5 !important"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
+        </a>
+      </div>
+    <?php endforeach ?>
   </div>
 </div>
 <!-- <div class="row bg-light-subtle pt-2"> -->

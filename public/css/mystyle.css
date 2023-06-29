@@ -324,3 +324,12 @@
 .cp-1 {
   padding: 2px !important;
 }
+
+.cat i {
+  font-size: 100px;
+  opacity: 0.5 !important;
+}
+
+.mega-title {
+  cursor: default !important;
+}
