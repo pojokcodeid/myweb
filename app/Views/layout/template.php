@@ -11,6 +11,7 @@
   <link href="<?= base_url('bootstrap-icon/font/bootstrap-icons.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/main.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('hljs-copy/dist/highlightjs-copy.min.css') ?>" rel="stylesheet" />
+  <link href="<?= base_url('css/tree.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/mystyle.css') ?>" rel="stylesheet">
 </head>
@@ -215,6 +216,7 @@
   </main>
   <script src="<?= base_url('jquery/jquery-3.5.1.js') ?>"></script>
   <script src="<?= base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?= base_url('js/tree.js') ?>"></script>
   <script src="<?= base_url('js/script.js') ?>"></script>
   <script src="<?= base_url('hljs/highlight.min.js') ?>"></script>
   <script src="<?= base_url('hljs-number/highlightjs-line-numbers.min.js') ?>"></script>
@@ -237,6 +239,27 @@
     );
     hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      window.nav = new NavTree("#nav-tree", {
+        searchable: true,
+        showEmptyGroups: true,
+
+        groupOpenIconClass: "bi",
+        groupOpenIcon: "bi-chevron-down",
+
+        groupCloseIconClass: "bi",
+        groupCloseIcon: "bi-chevron-right",
+
+        linkIconClass: "bi",
+        linkIcon: "",
+
+        iconWidth: "24px",
+
+        searchPlaceholderText: "Search",
+      });
+    });
   </script>
 </body>
 

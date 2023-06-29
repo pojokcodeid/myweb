@@ -3,64 +3,104 @@
 
 <div class="container content">
   <div class="row">
-    <!-- sidebar -->
-    <div class="col-lg-3 justify-content-start bg-body p-0 pt-1 shadow-sm" id="mySidebar">
+    <div class="col-lg-3 justify-content-start bg-body p-2 pt-3 rounded shadow-sm">
       <div class="flex-shrink-0 ps-1 mb-5">
-        <!-- content menu -->
-        <div class="p-1 pb-5">
-          <ul id="nav-tree" class="mb-5">
-            <li><a class="link-body-emphasis rounded selected" href="#">Dashboard</a></li>
-            <li><a class="nav-link link-body-emphasis rounded" href="#">Components</a>
-              <ul>
-                <li><a class="link-body-emphasis rounded" href="#">Login Form</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">Register</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">Accordion</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">Calender</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">Blog</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">Komponent</a></li>
-                <li><a class="link-body-emphasis rounded" href="#">sweetalert</a></li>
-              </ul>
-            </li>
-            <li><a class="link-body-emphasis rounded">Collapse 1</a>
-              <ul>
-                <li><a class="link-body-emphasis rounded">Collapse 2</a>
-                  <ul>
-                    <li><a href="#" class="link-body-emphasis rounded">Personal Data</a></li>
-                    <li><a href="#" class="link-body-emphasis rounded">Attendance</a></li>
-                    <li><a href="#" class="link-body-emphasis rounded">Collapse 3</a>
-                      <ul>
-                        <li><a href="#" class="link-body-emphasis rounded">Link 4</a></li>
-                        <li><a href="#" class="link-body-emphasis rounded">Link 5</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+          <svg class="bi pe-none me-1" width="28" height="24">
+            <use xlink:href="#bootstrap" />
+          </svg>
+          <span class="fs-5 fw-semibold">HTML</span>
+        </a>
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+              HTML Tutorial
+            </button>
+            <div class="collapse show" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">HTML Pengenalan</a>
                 </li>
-                <li><a href="#" class="link-body-emphasis rounded">Link 6</a></li>
-              </ul>
-            </li>
-            <li><a class="link-body-emphasis rounded">Collapse 10</a>
-              <ul>
-                <li><a class="link-body-emphasis rounded">Collapse 20</a>
-                  <ul>
-                    <li><a href="#" class="link-body-emphasis rounded">Link 20</a></li>
-                    <li><a href="#" class="link-body-emphasis rounded">Link 30</a></li>
-                    <li><a class="link-body-emphasis rounded">Collapse 30</a>
-                      <ul>
-                        <li><a href="#" class="link-body-emphasis rounded">Link 40</a></li>
-                        <li><a href="#" class="link-body-emphasis rounded">Link 50</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">HTML Editor</a>
                 </li>
-                <li><a href="#" class="link-body-emphasis rounded">Link 60</a></li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">HTML Basic</a>
+                </li>
               </ul>
-            </li>
-            <li><a href="#" class="link-body-emphasis rounded">Link 7</a></li>
-          </ul>
-        </div>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              Dashboard
+            </button>
+            <div class="collapse show" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Weekly</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Monthly</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Annually</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+              Orders
+            </button>
+            <div class="collapse" id="orders-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="border-top my-3"></li>
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+              data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+              Account
+            </button>
+            <div class="collapse" id="account-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a>
+                </li>
+                <li>
+                  <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <!-- end sidebar -->
     <div class="col-lg-9">
       <nav aria-label="breadcrumb" class="ps-1 mt-2">
         <ol class="breadcrumb">
@@ -81,10 +121,10 @@
       <!-- Post Content-->
       <article class="bg-body p-4 rounded shadow-sm">
         <div class="container-fluid px-0 px-lg-0">
-          <h1 class="section-heading text-primary">The Final Frontier</h1>
           <img src="../img/header/ts.png" alt="" class="img-fluid rounded mb-2 shadow-sm">
           <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-12 col-lg-2 col-xl-12">
+              <h1 class="section-heading text-primary">The Final Frontier</h1>
               <p>
                 There can be no thought of finishing for ‘aiming for
                 the stars.’ Both figuratively and literally, it is a

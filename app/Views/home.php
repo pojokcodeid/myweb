@@ -55,7 +55,7 @@
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-4 col-md-6 mb-4">
       <a href="#" class="text-decoration-none">
-        <div class="shadow-sm card border-left-success h-100 py-2 bg-body border-0">
+        <div class="shadow-sm card border-left-warning h-100 py-2 bg-body border-0">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
