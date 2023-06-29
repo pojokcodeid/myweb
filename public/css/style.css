@@ -152,4 +152,10 @@ pre {
 .link-body-emphasis {
   padding: 5px 15px 5px 15px;
   color: rgba(var(--bs-emphasis-color-rgb), 0.85) !important;
+  font-size: 16px !important;
+}
+
+.avatar {
+  /* filter: drop-shadow(0 -6mm 4mm rgb(171, 168, 171)); */
+  filter: drop-shadow(0 -8mm 8mm rgba(26, 188, 156, 0.4));
 }

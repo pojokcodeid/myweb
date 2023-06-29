@@ -22,7 +22,7 @@
 <nav class="navbar navbar-expand-lg bg-body fixed-top shadow-sm">
   <div class="container">
     <div>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?= base_url('/') ?>">
         <img id="logo" src="<?= base_url('img/pojokocde-w.png'); ?>" alt="Pojok Code" width="200" />
       </a>
     </div>
@@ -47,7 +47,7 @@
                 <?php foreach ($allKategori as $kategori) {
                   if ($kategori['group_kategori_id'] == $group['id']) {
                     ?>
-                    <li><a class="dropdown-item" href="#">
+                    <li><a class="dropdown-item" href="<?= base_url('tutorial/' . $kategori['slug']) ?>">
                         <?= $kategori['nama'] ?>
                       </a></li>
                   <?php }

@@ -5,14 +5,17 @@
   <div class="row p-2">
     <div class="mb-4 bg-body rounded-3 shadow-sm">
       <div class="row">
-        <div class="col py-5 m-5">
-          <h1 class="display-5 fw-bold">Pojok Code</h1>
-          <p class="col-md-8 fs-4">Berbagi Code dan Tutorial.</p>
-          <button class="btn btn-primary btn-lg" type="button">Mulai Belajar</button>
-          <button class="btn btn-outline-primary btn-lg mt-1" type="button">Daftar</button>
+        <!-- <div class="col-lg-6 py-5 m-5 border"> -->
+        <div class="col-lg-6 p-5">
+          <div class="p-5">
+            <h1 class="display-5 fw-bold">Pojok Code</h1>
+            <p class="col-md-8 fs-4">Berbagi Code dan Tutorial.</p>
+            <button class="btn btn-primary btn-lg" type="button">Mulai Belajar</button>
+            <button class="btn btn-outline-primary btn-lg mt-1" type="button">Daftar</button>
+          </div>
         </div>
-        <div class="col-auto">
-          <img src="./img/admin.png" alt="" class="img-fluid">
+        <div class="col-lg-6">
+          <img src="./img/admin.png" alt="" class="img-fluid avatar">
         </div>
       </div>
     </div>
@@ -127,7 +130,7 @@
         </div>
       </div>
       <div class="row">
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
@@ -143,7 +146,11 @@
               </a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
+        <div class="col mb-5">
+          <a href="#" class="btn btn-sm btn-outline-info" role="button">Explore Lebih Lanjut<i
+              class="bi bi-arrow-right-short" style="font-size: 24px"></i></a>
+        </div>
       </div>
     </div>
   </section>

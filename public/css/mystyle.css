@@ -24,6 +24,7 @@
   color: gray;
   font-size: 1em;
   padding: 0.5em 1em;
+  border-radius: 5px;
 }
 .dropdown-menu-c li .dropdown-item:hover {
   background-color: #f1f1f1;
@@ -304,9 +305,9 @@
 }
 
 .selected {
-  border-left: 2px solid #3b71ca;
+  border-left: 2px solid #1abc9c;
   background-color: rgba(var(--bs-emphasis-color-rgb), 0.04);
-  color: #3b71ca;
+  color: #1abc9c !important;
   width: 100%;
 }
 
@@ -316,7 +317,7 @@
 
 .nav-item a:hover {
   background-color: rgba(var(--bs-emphasis-color-rgb), 0.04);
-  color: #3b71ca;
+  color: #1abc9c;
   width: 100%;
   margin: 0;
 }
@@ -332,4 +333,5 @@
 
 .mega-title {
   cursor: default !important;
+  padding-left: 15px !important;
 }
