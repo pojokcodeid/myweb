@@ -40,7 +40,8 @@
           <div class="dropdown-menu dropdown-menu-c" aria-labelledby="navbarDropdown">
             <?php foreach ($groupKategori as $group): ?>
               <ul>
-                <li><a class="dropdown-item <?= $group['text_color'] ?> mega-title" href="#">
+                <li><a class="dropdown-item <?= $group['text_color'] ?> mega-title"
+                    href="<?= base_url('kategori/') ?><?= $group['slug'] ?>">
                     <?= $group['icon'] ?>&nbsp;
                     <?= $group['nama_group'] ?>
                   </a></li>

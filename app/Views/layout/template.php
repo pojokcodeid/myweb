@@ -20,7 +20,7 @@
 
 <body class="bg-body-tertiary">
   <?= $this->include('layout/navbar'); ?>
-  <main>
+  <main id="content">
     <?= $this->renderSection('content'); ?>
     <?= $this->include('layout/footer'); ?>
   </main>

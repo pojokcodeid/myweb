@@ -247,6 +247,7 @@
 
 .content {
   margin-top: 70px;
+  min-height: 100vh;
 }
 
 /* for coding number style */
@@ -342,6 +343,6 @@
 }
 
 .mega-title {
-  cursor: default !important;
+  /* cursor: default !important; */
   padding-left: 15px !important;
 }
