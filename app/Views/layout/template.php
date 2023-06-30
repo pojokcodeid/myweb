@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="shortcut icon" href="<?= base_url('img/icon/logo_2.png') ?>" type="image/x-icon" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
     <?= $title ?>
