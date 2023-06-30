@@ -315,6 +315,11 @@
   z-index: 0 !important;
 }
 
+.nav-item {
+  padding: 2px 0 2px 0 !important;
+  margin: 1px 2px 0 0 !important;
+}
+
 .nav-item a:hover {
   background-color: rgba(var(--bs-emphasis-color-rgb), 0.04);
   color: #1abc9c;
@@ -328,6 +333,11 @@
 
 .cat i {
   font-size: 100px;
+  opacity: 0.5 !important;
+}
+
+.cat-dtl i {
+  font-size: 50px;
   opacity: 0.5 !important;
 }
 

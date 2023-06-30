@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/about', 'Home::about');
 $routes->get('/tutorial', 'Tutorial::index');
 $routes->get('/tutorial/(:segment)', 'Tutorial::view/$1');
+$routes->get('/kategori/(:segment)', 'Kategori::index/$1');
 
 /*
  * --------------------------------------------------------------------

@@ -1,6 +1,6 @@
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -158,4 +158,13 @@ pre {
 .avatar {
   /* filter: drop-shadow(0 -6mm 4mm rgb(171, 168, 171)); */
   filter: drop-shadow(0 -8mm 8mm rgba(26, 188, 156, 0.4));
+  object-position: right bottom;
+}
+
+.kategori {
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.kategori:hover {
+  box-shadow: inset 500px 0 0 0 rgba(var(--bs-emphasis-color-rgb), 0.2) !important;
 }
