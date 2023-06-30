@@ -13,11 +13,11 @@ $lastElement = end($list);
 <div class="container content">
   <div class="row">
     <!-- sidebar -->
-    <div class="col-lg-3 justify-content-start bg-body p-0 pt-1 shadow-sm" id="mySidebar">
-      <div class="flex-shrink-0 ps-1 mb-5">
+    <div class="col-lg-3 justify-content-start p-0 pt-2" id="mySidebar">
+      <div class="flex-shrink-0 bg-body rounded p-2 shadow-sm">
         <!-- content menu -->
-        <div class="p-0 pb-5">
-          <ul id="nav-tree" class="mb-5">
+        <div class="p-0 pb-2">
+          <ul id="nav-tree" class="mb-2">
             <li><a class="nav-link link-body-emphasis rounded" href="<?= base_url('tutorial/' . $kategori['slug']) ?>">
                 <?= $kategori['nama'] ?>
               </a>
@@ -39,6 +39,28 @@ $lastElement = end($list);
               </ul>
             </li>
           </ul>
+        </div>
+      </div>
+      <!-- for subscription -->
+      <div class="position-sticky z-3" style="top: 70px">
+        <div class="flex-shrink-0 bg-body rounded p-3 mt-3 shadow-sm">
+          <h5><i class="bi bi-pencil-square"></i> Langganan</h5>
+          <div class="input-group mb-2">
+            <input type="text" id="email" class="form-control" placeholder="Email..." aria-label="Recipient's username"
+              aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="button" id="button-addon2">Kirim</button>
+          </div>
+        </div>
+        <!-- list populer -->
+        <div class="flex-shrink-0 bg-body rounded p-3 mt-3 shadow-sm">
+          <h5><i class="bi bi-newspaper"></i> Populer Tutorial</h5>
+          <div class="list-group list-group-light">
+            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">1. HTML - Form
+              Registration</a>
+            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">2. Javascript Validator</a>
+            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">3. Javascript DOM</a>
+            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">4. Typescript OOP</a>
+          </div>
         </div>
       </div>
     </div>
@@ -97,6 +119,12 @@ $lastElement = end($list);
             </div>
           </div>
         </article>
+        <blockquote class="blockquote">
+          <p>
+            <strong>INFORMSI : </strong>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Blanditiis amet in nam debitis laborum quod?
+          </p>
+        </blockquote>
       </div>
       <div class="row bg-body p-4 rounded shadow-sm m-1">
         <h4>Tentang Penulis</h4>

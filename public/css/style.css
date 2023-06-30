@@ -149,6 +149,15 @@ pre {
   border-left: 2px solid #1abc9c !important;
 }
 
+blockquote {
+  border-radius: 5px;
+  border-left: 3px solid #cd641a !important;
+  background-color: rgba(var(--bs-emphasis-color-rgb), 0.05);
+  padding: 8px !important;
+  font-size: inherit !important;
+  font-style: italic !important;
+}
+
 .link-body-emphasis {
   padding: 5px 15px 5px 15px;
   color: rgba(var(--bs-emphasis-color-rgb), 0.85) !important;

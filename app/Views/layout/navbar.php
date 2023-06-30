@@ -60,12 +60,6 @@
       </ul>
       <form class="d-flex">
         <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav mr-auto mb-lg-0">
-          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-            <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
-            <hr class="d-lg-none my-2 text-white-50" />
-          </li>
-        </ul>
         <div class="dropdown bd-mode-toggle">
           <button class="btn btn-link py-1 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
             aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
@@ -113,7 +107,14 @@
             </li>
           </ul>
         </div>
+        <ul class="navbar-nav mr-auto mb-lg-0 me-2">
+          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
+            <hr class="d-lg-none my-2 text-white-50" />
+          </li>
+        </ul>
         <a class="btn btn-primary" href="#">Daftar</a>
+        <a class="btn btn-outline-primary ms-1" href="#">Masuk</a>
       </form>
     </div>
   </div>
