@@ -11,6 +11,36 @@
   <link href="#" rel="stylesheet" id="codeStyle" />
   <link href="<?= base_url('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/main.min.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
+  <style>
+    /* for error validation */
+
+    :root {
+      --error-color: #dc3545;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+    }
+
+    .form-outline input:focus {
+      outline: none;
+    }
+
+    .form-outline.error input {
+      border-color: #dc3545 !important;
+    }
+
+    .form-outline.success input {
+      border-color: var(--success-color);
+    }
+
+    .form-outline small {
+      color: var(--error-color) !important;
+    }
+
+    .invalid-feedback{
+      color: var(--error-color) !important;
+    }
+  </style>
 </head>
 
 <body class="bg-body-tertiary">
@@ -26,45 +56,49 @@
               <div class="card-body p-5">
                 <h2 class="text-uppercase text-center mb-5">BUAT SEBUAH AKUN</h2>
 
-                <form>
+                <form id="signup" class="form" action="<?= base_url('auth/register') ?>" method="post">
 
-                  <div class="form-outline mb-4">
+                  <div class="mb-4 form-outline">
                     <label for="nama">Nama Lengkap :</label>
-                    <input type="text" id="nama" name="nama" class="form-control" />
+                    <input type="text" id="nama" name="nama" class="form-control" autocomplete="off" />
+                    <small></small>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label for="email">Email :</label>
-                    <input type="email" id="email" name="email" class="form-control" />
+                    <input type="email" id="email" name="email" class="form-control" autocomplete="off" />
+                    <small></small>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label for="password1">Password :</label>
                     <input type="password" id="password1" name="password1" class="form-control" />
+                    <small></small>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label for="password2">Ulangi Password :</label>
                     <input type="password" id="password2" name="password2" class="form-control" />
+                    <small></small>
                   </div>
 
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                    <label class="form-check-label" for="form2Example3g">
-                      Saya setuju semua pernyataan di <a href="#!" class="text-body"><u>Ketentuan layanan</u></a>
-                    </label>
+                  <div class="col-12 mb-4">
+                    <div class="form-check">
+                      <input class="form-check-input me-2" type="checkbox" name="chkConfirm" value="1"
+                        id="chkConfirm" />
+                      <label class="form-check-label" for="chkConfirm">
+                        Saya setuju semua pernyataan di <a href="#!" class="text-body"><u>Ketentuan layanan</u></a>
+                      </label>
+                      <small class="invalid-feedback" style="display:block"></small>                     
+                    </div>
                   </div>
-
                   <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary btn-block">Daftar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     <a href="<?= base_url('/') ?>" class="btn btn-outline-primary ms-2">Home</a>
                   </div>
-
                   <p class="text-center text-muted mt-5 mb-0">Sudah punya akun? <a href="<?= base_url('login') ?>"
                       class="fw-bold text-body"><u>Masuk disini</u></a></p>
-
                 </form>
-
               </div>
             </div>
           </div>
