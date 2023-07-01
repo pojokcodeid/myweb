@@ -17,7 +17,7 @@ class Home extends BaseController
 	public function index()
 	{
 		$data = [
-			'title' => 'Tutorial',
+			'title' => 'Home',
 			'groupKategori' => $this->groupKategoriModel->findAll(),
 			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
 		];
@@ -27,7 +27,7 @@ class Home extends BaseController
 	public function about()
 	{
 		$data = [
-			'title' => 'Tutorial',
+			'title' => 'About Me',
 			'groupKategori' => $this->groupKategoriModel->findAll(),
 			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
 		];

@@ -22,7 +22,7 @@ class Kategori extends BaseController
     $group = $this->groupKategoriModel->where('slug', $slug)->first();
     $kategoriByGroup = $this->kategoriModel->where(['group_kategori_id' => $group['id'], 'is_root' => 1])->findAll();
     $data = [
-      'title' => 'Tutorial',
+      'title' => 'Kategori Tutorial',
       'groupKategori' => $this->groupKategoriModel->findAll(),
       'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll(),
       'group' => $group,

@@ -113,8 +113,8 @@
             <hr class="d-lg-none my-2 text-white-50" />
           </li>
         </ul>
-        <a class="btn btn-primary" href="#">Daftar</a>
-        <a class="btn btn-outline-primary ms-1" href="#">Masuk</a>
+        <a class="btn btn-primary" href="<?= base_url('register') ?>">Daftar</a>
+        <a class="btn btn-outline-primary ms-1" href="<?= base_url('login') ?>">Masuk</a>
       </form>
     </div>
   </div>
