@@ -35,6 +35,7 @@ $routes->get('/tutorial', 'Tutorial::index');
 $routes->get('/tutorial/(:segment)', 'Tutorial::view/$1');
 $routes->get('/kategori/(:segment)', 'Kategori::index/$1');
 $routes->get('/register', 'Auth::register');
+$routes->post('/register/insert', 'Auth::insert');
 $routes->get('/login', 'Auth::login');
 
 /*
