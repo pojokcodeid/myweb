@@ -16,17 +16,21 @@
 
   const setTheme = theme => {
     let logo=document.getElementById("logo");
+    let logow=document.getElementById("logow");
     let codestyle=document.getElementById("codeStyle");
     if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      logo.src="../img/pojokocde-w.png";
+      logo.style.display="none";
+      logow.style.display="";
       codestyle.href="../hljs-onedark/onedark.css";
       document.documentElement.setAttribute('data-bs-theme', 'dark')
     } else {
       if(theme==="dark"){
-        logo.src="../img/pojokocde-w.png";
+        logo.style.display="none";
+        logow.style.display="";
         codestyle.href="../hljs-onedark/onedark.css";
       }else{
-        logo.src="../img/pojokcode.png";
+        logo.style.display="";
+        logow.style.display="none";
         codestyle.href="../hljs-onedark/one-light.css";
       }
       document.documentElement.setAttribute('data-bs-theme', theme);
@@ -40,12 +44,15 @@
 
 
     let logo=document.getElementById("logo");
+    let logow=document.getElementById("logow");
     let codestyle=document.getElementById("codeStyle");
     if(theme==="dark"){
-      logo.src="../img/pojokocde-w.png";
+        logo.style.display="none";
+        logow.style.display="";
       codestyle.href="../hljs-onedark/onedark.css";
     }else if(theme==="light"){
-      logo.src="../img/pojokcode.png";
+      logo.style.display="";
+      logow.style.display="none";
       codestyle.href="../hljs-onedark/one-light.css";
     }
 

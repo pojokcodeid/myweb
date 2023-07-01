@@ -14,7 +14,9 @@
 </head>
 
 <body class="bg-body-tertiary">
-  <img id="logo" src="" alt="Pojok Code" width="200" style="display: none;" />
+  <img style="display: none;" id="logo" src="" alt="" width="200" />
+  <img style="display: none;" id="logow" src="" alt="" width="200" />
+
   <section class="vh-100 bg-image">
     <div class="mask d-flex align-items-center h-100 bg-primary bg-opacity-10">
       <div class="container h-100">

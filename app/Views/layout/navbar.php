@@ -23,7 +23,8 @@
   <div class="container">
     <div>
       <a class="navbar-brand" href="<?= base_url('/') ?>">
-        <img id="logo" src="<?= base_url('img/pojokocde-w.png'); ?>" alt="Pojok Code" width="200" />
+        <img id="logo" src="<?= base_url('img/pojokcode.png'); ?>" alt="Pojok Code" width="200" />
+        <img style="display: none;" id="logow" src="<?= base_url('img/pojokcode-w.png'); ?>" alt="Pojok Code" width="200" />
       </a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
