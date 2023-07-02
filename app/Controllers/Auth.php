@@ -21,39 +21,52 @@ class Auth extends BaseController
     $data = [
       'title' => 'Register',
       'groupKategori' => $this->groupKategoriModel->findAll(),
-      'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
+      'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll(),
     ];
     return view('auth/register', $data);
   }
 
-  public function insert(){
+  public function insert()
+  {
     // validasi data
-    if(! $this->validate([
-      'email'=>[
-        'rules'=>'required|valid_email|is_unique[user.email]',
-        'error'=>[
-          'required'=>'Email harus diisi',
-          'valid_email'=>'Email tidak valid',
-          'is_unique'=>'Email sudah digunakan'
+    if (
+      !$this->validate([
+        'email' => [
+          'rules' => 'required|valid_email|is_unique[user.email]',
+          'errors' => [
+            'required' => 'Email harus diisi',
+            'valid_email' => 'Email tidak valid',
+            'is_unique' => 'Email sudah digunakan'
+          ]
         ]
-      ]
-    ])){
-      session()->setFlashdata('error', $this->validator->listErrors());
+      ])
+    ) {
+      session()->setFlashdata('errors', $this->validator->getErrors());
       return redirect()->to(base_url('register'));
     }
-    $data=[
-      'nama'=> $this->request->getVar('nama'),
-      'email'=> $this->request->getVar('email'),
-      'password'=> password_hash($this->request->getVar('password1'), PASSWORD_BCRYPT),
-      'is_admin'=> 0,
-      'created_at'=> date('Y-m-d H:i:s'),
-      'activated_at'=> date('Y-m-d H:i:s'),
-      'active'=> 1
+    $data = [
+      'nama' => $this->request->getVar('nama'),
+      'email' => $this->request->getVar('email'),
+      'password' => password_hash($this->request->getVar('password1'), PASSWORD_BCRYPT),
+      'is_admin' => 0,
+      'created_at' => date('Y-m-d H:i:s'),
+      'activated_at' => date('Y-m-d H:i:s'),
+      'active' => 1
     ];
-    $user=new UserModel();
-    $hasil=$user->insert($data);
-    if($hasil){
+    $user = new UserModel();
+    $hasil = $user->insert($data);
+    if ($hasil) {
+      $errmessage = [
+        'success' => 'Register berhasil, silahkan login'
+      ];
+      session()->setFlashdata('success', $errmessage);
       return redirect()->to(base_url('login'));
+    } else {
+      $errmessage = [
+        'errors' => 'Register gagal, silahkan hubungi administrator'
+      ];
+      session()->setFlashdata('message', $errmessage);
+      return redirect()->to(base_url('register'));
     }
   }
 
