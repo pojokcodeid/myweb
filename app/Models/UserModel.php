@@ -11,6 +11,6 @@ class UserModel extends Model
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
 
-  protected $allowedFields = ['nama', 'email', 'password', 'is_admin', 'activated_at', 'active', 'created_at'];
+  protected $allowedFields = ['nama', 'email', 'password', 'is_admin', 'activated_at', 'active', 'created_at', 'image'];
 
 }

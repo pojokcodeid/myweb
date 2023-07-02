@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
+use App\Models\UserModel;
 
 class Home extends BaseController
 {

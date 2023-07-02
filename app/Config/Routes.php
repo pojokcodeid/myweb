@@ -37,6 +37,9 @@ $routes->get('/kategori/(:segment)', 'Kategori::index/$1');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register/insert', 'Auth::insert');
 $routes->get('/login', 'Auth::login');
+$routes->post('/login/auth', 'Auth::loginAuth');
+$routes->get('/logout', 'Auth::logout');
+$routes->get('/profile', 'Auth::profile');
 
 /*
  * --------------------------------------------------------------------

@@ -64,14 +64,15 @@
                     <small></small>
                   </div>
 
-                  <div class="form-outline mb-4 <?php if (session()->getFlashdata('errors'))
+                  <div class="form-outline mb-4 <?php if (isset(session()->getFlashdata('errors')['email']))
                     echo 'error'; ?>">
                     <label for="email">Email :</label>
                     <input type="email" value="" id="email" name="email" class="form-control" autocomplete="off" />
                     <small>
                       <?php
                       if (session()->getFlashdata('errors')) {
-                        echo session()->getFlashdata('errors')['email'];
+                        if (isset(session()->getFlashdata('errors')['email']))
+                          echo session()->getFlashdata('errors')['email'];
                       }
                       ?>
                     </small>

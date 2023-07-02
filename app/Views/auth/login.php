@@ -12,7 +12,17 @@
   <link href="<?= base_url('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('bootstrap-icon/font/bootstrap-icons.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/main.min.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('css/error.css') ?>" rel="stylesheet">
 </head>
+
+<?php
+$email = "";
+$password = "";
+if (session()->getFlashdata('data')) {
+  $email = session()->getFlashdata('data')['email'];
+  $password = session()->getFlashdata('data')['password'];
+}
+?>
 
 <body class="bg-body-tertiary">
   <section class="vh-100 bg-primary bg-opacity-10">
@@ -51,23 +61,59 @@
                   </div>
                 </div>
               <?php endif ?>
+              <!-- untuk error message -->
+              <?php if (session()->getFlashdata('msg')): ?>
+                <div>
+                  <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+                      <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <div>
+                      <strong>Perhatian ! </strong>
+                      <?= session()->getFlashdata('msg')['invalid']; ?>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+              <?php endif ?>
               <h2 class="fw-bold mb-2 text-uppercase d-flex justify-content-center">Masuk</h2>
               <p class="mb-5 d-flex justify-content-center">Silahkan masukan email dan password!</p>
+              <form action="<?= base_url('login/auth') ?>" method="post">
+                <div class="form-outline form-white mb-4 <?php if (isset(session()->getFlashdata('errors')['email']))
+                  echo 'error'; ?>">
+                  <label for="email">Email :</label>
+                  <input type="email" value="<?= $email ?>" id="email" name="email" class="form-control"
+                    autocomplete="off" placeholder="Email" />
+                  <small>
+                    <?php
+                    if (session()->getFlashdata('errors')) {
+                      if (isset(session()->getFlashdata('errors')['email']))
+                        echo session()->getFlashdata('errors')['email'];
+                    }
+                    ?>
+                  </small>
+                </div>
 
-              <div class="form-outline form-white mb-4">
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Email" />
-              </div>
+                <div class="form-outline form-white mb-4 <?php if (isset(session()->getFlashdata('errors')['password']))
+                  echo 'error'; ?>">
+                  <label for="password">Password :</label>
+                  <input type="password" id="password" value="<?= $password ?>" name="password" class="form-control"
+                    placeholder="Password" autocomplete="off" />
+                  <small>
+                    <?php
+                    if (session()->getFlashdata('errors')) {
+                      if (isset(session()->getFlashdata('errors')['password']))
+                        echo session()->getFlashdata('errors')['password'];
+                    }
+                    ?>
+                  </small>
+                </div>
 
-              <div class="form-outline form-white mb-4">
-                <label for="password">Password :</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
-              </div>
-
-              <p class="small mb-5 pb-lg-2"><a href="#!">Tidak ingat kata sandi?</a></p>
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-primary px-5" type="submit">Masuk</button>
-              </div>
+                <p class="small mb-5 pb-lg-2"><a href="#!">Tidak ingat kata sandi?</a></p>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-primary px-5" type="submit">Masuk</button>
+                </div>
+              </form>
 
             </div>
 

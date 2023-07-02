@@ -24,7 +24,8 @@
     <div>
       <a class="navbar-brand" href="<?= base_url('/') ?>">
         <img id="logo" src="<?= base_url('img/pojokcode.png'); ?>" alt="Pojok Code" width="200" />
-        <img style="display: none;" id="logow" src="<?= base_url('img/pojokcode-w.png'); ?>" alt="Pojok Code" width="200" />
+        <img style="display: none;" id="logow" src="<?= base_url('img/pojokcode-w.png'); ?>" alt="Pojok Code"
+          width="200" />
       </a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -114,8 +115,32 @@
             <hr class="d-lg-none my-2 text-white-50" />
           </li>
         </ul>
-        <a class="btn btn-primary" href="<?= base_url('register') ?>">Daftar</a>
-        <a class="btn btn-outline-primary ms-1" href="<?= base_url('login') ?>">Masuk</a>
+        <?php if (session('user_id')): ?>
+          <div id="user1">
+            <div class="dropdown ms-1 me-3">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle link-body-emphasis"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="<?= base_url('img/') . session('image'); ?>" alt="" width="32" height="32"
+                  class="rounded-circle me-2" />
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end text-small shadow-sm">
+                <li class="p-3 justify-content-center border-bottom">
+                  <strong>
+                    <?= ucwords(session('nama')) ?>
+                  </strong>
+                </li>
+                <li><a class="dropdown-item" href="<?= base_url('profile') ?>">Profile</a></li>
+                <!-- <li>
+                  <hr class="dropdown-divider" />
+                </li> -->
+                <li><a class="dropdown-item" href="<?= base_url('logout') ?>">Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        <?php else: ?>
+          <a class="btn btn-primary" href="<?= base_url('register') ?>">Daftar</a>
+          <a class="btn btn-outline-primary ms-1" href="<?= base_url('login') ?>">Masuk</a>
+        <?php endif ?>
       </form>
     </div>
   </div>
