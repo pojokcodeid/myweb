@@ -15,13 +15,13 @@
 </head>
 
 <body class="bg-body-tertiary">
-  <img style="display: none;" id="logo" src="" alt="" width="200" />
-  <img style="display: none;" id="logow" src="" alt="" width="200" />
   <section class="vh-100 bg-primary bg-opacity-10">
-    <div class="container py-5 h-100">
+    <div class="container h-100">
+      <input type="hidden" id="logo">
+      <input type="hidden" id="logow">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-body" style="border-radius: 1rem;">
+          <div class="card bg-body border-0 shadow-sm" style="border-radius: 1rem;">
             <div class="card-body p-5">
               <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">

@@ -16,8 +16,8 @@
 </head>
 
 <body class="bg-body-tertiary">
-  <img style="display: none;" id="logo" src="" alt="" width="200" />
-  <img style="display: none;" id="logow" src="" alt="" width="200" />
+  <input type="hidden" id="logo">
+  <input type="hidden" id="logow">
   <section class="vh-100 bg-image">
     <div class="mask d-flex align-items-center h-100 bg-primary bg-opacity-10">
       <div class="container h-100">
