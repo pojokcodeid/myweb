@@ -107,12 +107,20 @@
                   <div class="tab-content">
                     <div id="data" class="container tab-pane active"><br>
                       <h4>Personal Data</h4>
-                      <form action="#">
-                        <div class="col-md-6 col-lg-6 col-xl-4 mb-4 form-outline">
+                      <form action="<?= base_url('auth/updateprofil') ?>" method="post">
+                        <div class="col-md-6 col-lg-6 col-xl-4 mb-4 form-outline <?php if (isset(session()->getFlashdata('errors')['nama']))
+                          echo 'error'; ?>">
                           <label for="nama">Nama Lengkap :</label>
                           <input type="text" value="<?= $user['nama']; ?>" id="nama" name="nama" class="form-control"
                             autocomplete="off" />
-                          <small></small>
+                          <small>
+                            <?php
+                            if (session()->getFlashdata('errors')) {
+                              if (isset(session()->getFlashdata('errors')['nama']))
+                                echo session()->getFlashdata('errors')['nama'];
+                            }
+                            ?>
+                          </small>
                         </div>
 
                         <div class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4 <?php if (isset(session()->getFlashdata('errors')['email']))

@@ -5,6 +5,7 @@ use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
 use App\Models\UserModel;
 use CodeIgniter\Files\File;
+use PharIo\Manifest\Email;
 
 class Auth extends BaseController
 {
@@ -253,5 +254,60 @@ class Auth extends BaseController
     ];
     session()->setFlashdata('pesan', $pesan);
     return redirect()->to(base_url('profile'));
+  }
+
+  public function updateProfil()
+  {
+    // pastikan dalam mode login
+    if (!session('user_id')) {
+      return redirect()->to(base_url('/'));
+    }
+    // validasi data
+    $validationRule = [
+      'nama' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => 'Nama harus diisi'
+        ]
+      ],
+      'email' => [
+        'rules' => 'required|valid_email',
+        'errors' => [
+          'required' => 'Email harus diisi',
+          'valid_email' => 'Email tidak valid'
+        ]
+      ],
+    ];
+    if (!$this->validate($validationRule)) {
+      session()->setFlashdata('errors', $this->validator->getErrors());
+      return redirect()->to(base_url('profile'));
+    }
+    // cek email yang dikirim sama dengan email userlogin tidak
+    $userModel = new UserModel();
+    $user = $userModel->where(['email' => $this->request->getVar('email')])->first();
+    if (!$user || $user['email'] == session('email')) {
+      $updated = $userModel->update(session('user_id'), [
+        'nama' => $this->request->getVar('nama'),
+        'email' => $this->request->getVar('email')
+      ]);
+      if ($updated) {
+        $pesan = [
+          'success' => 'Profil berhasil diubah'
+        ];
+        $session = session();
+        $session->remove('email');
+        $session->set('email', $this->request->getVar('email'));
+        $session->remove('nama');
+        $session->set('nama', $this->request->getVar('nama'));
+        session()->setFlashdata('pesan', $pesan);
+        return redirect()->to(base_url('profile'));
+      }
+    } else {
+      $pesan = [
+        'errors' => 'Email sudah digunakan'
+      ];
+      session()->setFlashdata('pesan', $pesan);
+      return redirect()->to(base_url('profile'));
+    }
   }
 }
