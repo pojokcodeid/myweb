@@ -229,6 +229,9 @@ class Auth extends BaseController
           'image' => $name
         ]);
         if ($updated) {
+          $session = session();
+          $session->remove('image');
+          $session->set('image', $name);
           $pesan = [
             'success' => 'Foto berhasil diubah'
           ];
