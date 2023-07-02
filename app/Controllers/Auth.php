@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
 use App\Models\UserModel;
+use CodeIgniter\Files\File;
 
 class Auth extends BaseController
 {
@@ -176,5 +177,78 @@ class Auth extends BaseController
       'user' => $userModel->where('user_id', session('user_id'))->first()
     ];
     return view('auth/profile', $data);
+  }
+
+  public function updateFoto()
+  {
+    helper(['form', 'url']);
+    // pastikan user login
+    if (!session('user_id')) {
+      return redirect()->to(base_url('/'));
+    }
+    // validasi data
+    $validationRule = [
+      'foto' => [
+        'label' => 'Image File',
+        'rules' => [
+          'uploaded[foto]',
+          'is_image[foto]',
+          'mime_in[foto,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+          'max_size[foto,4096]',
+        ],
+        'errors' => [
+          'uploaded' => 'Foto harus diisi',
+          'is_image' => 'File harus berupa gambar',
+          'mime_in' => 'File harus gambar (jpg, jpeg, gif, png, webp)',
+          'max_size' => 'Ukuran file terlalu besar',
+        ]
+      ]
+    ];
+    if (!$this->validate($validationRule)) {
+      session()->setFlashdata('errors', $this->validator->getErrors());
+      return redirect()->to(base_url('profile'));
+    }
+
+    $img = $this->request->getFile('foto');
+    if (!$img->hasMoved()) {
+      $name = "";
+      try {
+        $newName = $img->getRandomName();
+        $img->move(ROOTPATH . 'public\img\profile', $newName);
+        $name = $img->getName();
+        // dapatlkan namafile image lama
+        $userModel = new UserModel();
+        $user = $userModel->where('user_id', session('user_id'))->first();
+        $oldimage = $user['image'];
+        // hapus file lama
+        if ($oldimage != 'img_avatar1.png') {
+          unlink(ROOTPATH . 'public/img/profile/' . $oldimage);
+        }
+        // ubah data di database
+        $updated = $userModel->update($user['user_id'], [
+          'image' => $name
+        ]);
+        if ($updated) {
+          $pesan = [
+            'success' => 'Foto berhasil diubah'
+          ];
+          session()->setFlashdata('pesan', $pesan);
+          return redirect()->to(base_url('profile'));
+        }
+      } catch (\Exception $e) {
+        unlink(ROOTPATH . 'public/img/profile/' . $name);
+        echo $e->getMessage();
+        $pesan = [
+          'errors' => $e->getMessage()
+        ];
+        session()->setFlashdata('pesan', $pesan);
+        return redirect()->to(base_url('profile'));
+      }
+    }
+    $pesan = [
+      'errors' => 'Foto gagal diubah'
+    ];
+    session()->setFlashdata('pesan', $pesan);
+    return redirect()->to(base_url('profile'));
   }
 }

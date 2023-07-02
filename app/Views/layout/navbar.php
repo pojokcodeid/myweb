@@ -120,7 +120,7 @@
             <div class="dropdown ms-1 me-3">
               <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle link-body-emphasis"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="<?= base_url('img/') . session('image'); ?>" alt="" width="32" height="32"
+                <img src="<?= base_url('img/profile/') . session('image'); ?>" alt="" width="32" height="32"
                   class="rounded-circle me-2" />
               </a>
               <ul class="dropdown-menu dropdown-menu-end text-small shadow-sm">

@@ -16,6 +16,7 @@
   <link href="<?= base_url('css/tree.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
   <link href="<?= base_url('css/mystyle.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('css/error.css') ?>" rel="stylesheet">
 </head>
 
 <body class="bg-body-tertiary">

@@ -40,6 +40,7 @@ $routes->get('/login', 'Auth::login');
 $routes->post('/login/auth', 'Auth::loginAuth');
 $routes->get('/logout', 'Auth::logout');
 $routes->get('/profile', 'Auth::profile');
+$routes->post('/auth/updatefoto', 'Auth::updateFoto');
 
 /*
  * --------------------------------------------------------------------
