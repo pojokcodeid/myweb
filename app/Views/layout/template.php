@@ -27,6 +27,7 @@
   </main>
   <script src="<?= base_url('jquery/jquery-3.5.1.js') ?>"></script>
   <script src="<?= base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?= base_url('sweetalert/dist/sweetalert2.all.min.js') ?>"></script>
   <script src="<?= base_url('js/tree.js') ?>"></script>
   <script src="<?= base_url('js/script.js') ?>"></script>
   <script src="<?= base_url('hljs/highlight.min.js') ?>"></script>

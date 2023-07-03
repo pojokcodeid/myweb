@@ -152,70 +152,82 @@ $lastElement = end($list);
         <div class="col">
           <div class="card border-0">
             <h4>Komentar</h4>
-            <div class="card-body">
-              <div class="d-flex flex-start align-items-center">
-                <img class="rounded-circle shadow-1-strong me-3 float-end" src="<?= base_url('img/img_avatar1.png') ?>"
-                  alt="avatar" width="60" height="60" />
-                <div>
-                  <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
-                  <p class="text-muted small mb-0">
-                    Shared publicly - Jan 2020
-                  </p>
+            <?php foreach ($comment as $item): ?>
+              <div class="card-body bg-body-tertiary mb-2 rounded">
+                <div class="d-flex flex-start align-items-center">
+                  <img class="rounded-circle shadow-1-strong me-3 float-end"
+                    src="<?= base_url('img/profile/') . $item['image'] ?>" alt="avatar" width="60" height="60" />
+                  <div>
+                    <h6 class="fw-bold text-primary mb-1">
+                      <?= ucwords($item['nama']) ?>
+                    </h6>
+                    <p class="text-muted small mb-0">
+                      Dibuat Pada -
+                      <?= date_format(date_create($item['created_at']), "Y M d H:i") ?>
+                    </p>
+                    <?php if (session('user_id') == $item['user_id']): ?>
+                      <div class="modal fade" id="exampleModalToggle<?= $item['comment_id'] ?>" aria-hidden="true"
+                        aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header border-0">
+                              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="#" method="post">
+                                <div class="form-outline w-100">
+                                  <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
+                                    rows="4"><?= $item['comment'] ?></textarea>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer border-0">
+                              <button class="btn btn-primary" data-bs-toggle="modal">Ubah</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
+                          data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" data-bs-target="#exampleModalToggle<?= $item['comment_id'] ?>"
+                              data-bs-toggle="modal" href="#">Update</a></li>
+                          <li><a class="dropdown-item" href="#">Delete</a></li>
+                        </ul>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <p class="mt-3 mb-4 pb-2">
+                  <?= $item['comment'] ?>
+                </p>
+
+                <div class="small d-flex justify-content-start">
+                  <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
+                  </a>
+                  <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+                    <i class="bi bi-hand-thumbs-down"></i>&nbsp;
+                    <p class="mb-0">(0) Tidak Suka</p>
+                  </a>
                 </div>
               </div>
-
-              <p class="mt-3 mb-4 pb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-              </p>
-
-              <div class="small d-flex justify-content-start">
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
-                </a>
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                  <p class="mb-0">(0) Tidak Suka</p>
-                </a>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex flex-start align-items-center">
-                <img class="rounded-circle shadow-1-strong me-3 float-end" src="<?= base_url('img/asep.png') ?>"
-                  alt="avatar" width="60" height="60" />
-                <div>
-                  <h6 class="fw-bold text-primary mb-1">Pojok Code</h6>
-                  <p class="text-muted small mb-0">
-                    Shared publicly - Jan 2020
-                  </p>
-                </div>
-              </div>
-
-              <p class="mt-3 mb-4 pb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-              </p>
-
-              <div class="small d-flex justify-content-start">
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
-                </a>
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                  <p class="mb-0">(0) Tidak Suka</p>
-                </a>
-              </div>
-            </div>
+            <?php endforeach ?>
             <div class="card-body">
               <a href="#" class="text-decoration-none" role="button">Tampil Lebih Banyak<i
                   class="bi bi-arrow-right-short" style="font-size: 24px"></i></a>
             </div>
-            <form id="frmComment" action="<?= base_url('tutorial/comment/') . $slug ?>" method="post">
-              <div class="card-footer py-3 border-0 rounded">
-                <div class="d-flex flex-start w-100">
-                  <img class="rounded-circle shadow-1-strong me-3" src="              
+            <div class="bg-body-tertiary rounded p-2">
+              <form id="frmComment" name="frmComment"
+                action="<?= base_url('tutorial/comment/') . $slug . '/' . $content['id'] ?>" method="post">
+                <div class="card-footer bg-body-tertiary py-3 border-0">
+                  <div class="d-flex flex-start w-100">
+                    <img class="rounded-circle shadow-1-strong me-3" src="              
                 <?php
                 if (session('image')) {
                   echo base_url('img/profile/' . session('image'));
@@ -224,21 +236,23 @@ $lastElement = end($list);
                 }
                 ?>
                 " alt="avatar" width="40" height="40" />
-                  <div class="form-outline w-100 error">
-                    <label class="form-label" for="txtComment">Tulis Komentar</label>
-                    <textarea oninput="removeError(this)"
-                      class="form-control <?php setInvalid('errors', 'txtComment') ?>" id="txtComment" name="txtComment"
-                      rows="4"></textarea>
-                    <small class="invalid-feedback">
-                      <?php setErrorMsg('errors', 'txtComment') ?>
-                    </small>
+                    <div class="form-outline w-100 error">
+                      <label class="form-label" for="txtComment">Tulis Komentar</label>
+                      <textarea maxlength="225" oninput="removeError(this)"
+                        class="form-control <?php setInvalid('errors', 'txtComment') ?>" id="txtComment"
+                        name="txtComment" rows="4"></textarea>
+                      <small class="invalid-feedback">
+                        <?php setErrorMsg('errors', 'txtComment') ?>
+                      </small>
+                    </div>
+                  </div>
+                  <div class="float-end mt-2 pt-1">
+                    <button onclick="validInput(document.frmComment.txtComment)" type="button"
+                      class="btn btn-primary btn-sm">Simpan Komentar</button>
                   </div>
                 </div>
-                <div class="float-end mt-2 pt-1">
-                  <button type="submit" class="btn btn-primary btn-sm">Simpan Komentar</button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

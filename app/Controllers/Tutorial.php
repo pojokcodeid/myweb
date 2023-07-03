@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
 use App\Models\TutorialModel;
+use App\Models\CommentModel;
 
 class Tutorial extends BaseController
 {
@@ -40,7 +41,8 @@ class Tutorial extends BaseController
 			$categoriItem = $this->kategoriModel->where('parent', $categori['id'])->findAll();
 		}
 		$content = $this->tutorialModel->where('kategoriid', $itemselected['id'])->first();
-
+		// get list commnet top 5
+		$list = $this->tutorialModel->getCommentLimit($content['id'], 5);
 		$data = [
 			'title' => 'Tutorial',
 			'groupKategori' => $this->groupKategoriModel->findAll(),
@@ -49,12 +51,13 @@ class Tutorial extends BaseController
 			'categoriItem' => $categoriItem,
 			'itemselected' => $itemselected,
 			'content' => $content,
-			'slug' => $slug
+			'slug' => $slug,
+			'comment' => $list
 		];
 		return view('tutorial/index', $data);
 	}
 
-	public function comment($slug)
+	public function comment($slug, $id)
 	{
 		// pastikan user login
 		if (!session('user_id')) {
@@ -74,8 +77,26 @@ class Tutorial extends BaseController
 			session()->setFlashdata('errors', $this->validator->getErrors());
 			return redirect()->to(base_url('tutorial/' . $slug));
 		}
-
-		return redirect()->to(base_url('tutorial/' . $slug));
+		$categori = $this->kategoriModel->where('slug', $slug)->first();
+		d($categori);
+		$comment = $this->request->getVar('txtComment');
+		$data = [
+			'user_id' => session('user_id'),
+			'tutorial_id' => $id,
+			'comment' => $comment,
+			'created_at' => date('Y-m-d H:i:s'),
+		];
+		$commentModel = new CommentModel();
+		$process = $commentModel->save($data);
+		if ($process) {
+			return redirect()->to(base_url('tutorial/' . $slug));
+		} else {
+			$error = [
+				'errors' => 'Gagal menyimpan data'
+			];
+			session()->setFlashdata('errors', $error);
+			return redirect()->to(base_url('tutorial/' . $slug));
+		}
 	}
 
 }

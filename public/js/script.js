@@ -107,3 +107,16 @@
 function removeError(input){
   input.classList.remove("is-invalid");
 }
+
+function validInput(input){
+  if(input.value==""){
+    Swal.fire({
+      title: 'Error!',
+      text: 'Input Komentar Masih Kosong',
+      icon: 'error',
+      confirmButtonText: 'Ok'
+    })
+  }else{
+    document.frmComment.submit();
+  }
+}
