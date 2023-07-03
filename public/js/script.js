@@ -109,7 +109,7 @@ function removeError(input){
 }
 
 function validInput(input){
-  if(input.value==""){
+  if(input.txtComment.value==""){
     Swal.fire({
       title: 'Error!',
       text: 'Input Komentar Masih Kosong',
@@ -117,6 +117,6 @@ function validInput(input){
       confirmButtonText: 'Ok'
     })
   }else{
-    document.frmComment.submit();
+    input.submit();
   }
 }

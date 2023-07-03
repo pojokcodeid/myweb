@@ -99,4 +99,25 @@ class Tutorial extends BaseController
 		}
 	}
 
+	public function commentUpdate($slug)
+	{
+		// pastikan user login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		// validation
+		$validationRule = [
+			'txtComment' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Komentar harus diisi'
+				]
+			]
+		];
+		// redirect error
+		if (!$this->validate($validationRule)) {
+			session()->setFlashdata('errors', $this->validator->getErrors());
+			return redirect()->to(base_url('tutorial/' . $slug));
+		}
+	}
 }

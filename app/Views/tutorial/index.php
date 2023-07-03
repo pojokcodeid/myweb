@@ -170,21 +170,23 @@ $lastElement = end($list);
                         aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
-                            <div class="modal-header border-0">
-                              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form action="#" method="post">
+                            <form onsubmit="validInput(this);return false;"
+                              action="<?= base_url('tutorial/commentUpdate/') . $slug ?>" method="post">
+                              <div class="modal-header border-0">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
                                 <div class="form-outline w-100">
                                   <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
                                     rows="4"><?= $item['comment'] ?></textarea>
                                 </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer border-0">
-                              <button class="btn btn-primary" data-bs-toggle="modal">Ubah</button>
-                            </div>
+                              </div>
+                              <div class="modal-footer border-0">
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal">Ubah</button>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -247,7 +249,7 @@ $lastElement = end($list);
                     </div>
                   </div>
                   <div class="float-end mt-2 pt-1">
-                    <button onclick="validInput(document.frmComment.txtComment)" type="button"
+                    <button onclick="validInput(document.frmComment)" type="button"
                       class="btn btn-primary btn-sm">Simpan Komentar</button>
                   </div>
                 </div>
