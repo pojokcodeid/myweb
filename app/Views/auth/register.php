@@ -117,6 +117,7 @@
   </section>
   <script src="<?= base_url('bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
   <script src="<?= base_url('js/script.js') ?>"></script>
+  <script src="<?= base_url('js/registerValidation.js') ?>"></script>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content'); ?>
+<?= $this->include('validation/alert'); ?>
+<?= $this->include('validation/warning'); ?>
 
 <!-- load data for navbar -->
 
@@ -210,20 +212,33 @@ $lastElement = end($list);
               <a href="#" class="text-decoration-none" role="button">Tampil Lebih Banyak<i
                   class="bi bi-arrow-right-short" style="font-size: 24px"></i></a>
             </div>
-            <div class="card-footer py-3 border-0 rounded">
-              <div class="d-flex flex-start w-100">
-                <img class="rounded-circle shadow-1-strong me-3" src="<?= base_url('img/img_avatar1.png') ?>"
-                  alt="avatar" width="40" height="40" />
-                <div class="form-outline w-100">
-                  <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
-                  <label class="form-label" for="textAreaExample">Message</label>
+            <form id="frmComment" action="<?= base_url('tutorial/comment/') . $slug ?>" method="post">
+              <div class="card-footer py-3 border-0 rounded">
+                <div class="d-flex flex-start w-100">
+                  <img class="rounded-circle shadow-1-strong me-3" src="              
+                <?php
+                if (session('image')) {
+                  echo base_url('img/profile/' . session('image'));
+                } else {
+                  echo base_url('img/img_avatar1.png');
+                }
+                ?>
+                " alt="avatar" width="40" height="40" />
+                  <div class="form-outline w-100 error">
+                    <label class="form-label" for="txtComment">Tulis Komentar</label>
+                    <textarea oninput="removeError(this)"
+                      class="form-control <?php setInvalid('errors', 'txtComment') ?>" id="txtComment" name="txtComment"
+                      rows="4"></textarea>
+                    <small class="invalid-feedback">
+                      <?php setErrorMsg('errors', 'txtComment') ?>
+                    </small>
+                  </div>
+                </div>
+                <div class="float-end mt-2 pt-1">
+                  <button type="submit" class="btn btn-primary btn-sm">Simpan Komentar</button>
                 </div>
               </div>
-              <div class="float-end mt-2 pt-1">
-                <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

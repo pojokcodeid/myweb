@@ -13,3 +13,9 @@ function setErrorClass($key = '', $field = '')
   if (isset(session()->getFlashdata($key)[$field]))
     echo 'error';
 }
+
+function setInvalid($key = '', $field = '')
+{
+  if (isset(session()->getFlashdata($key)[$field]))
+    echo 'is-invalid';
+}

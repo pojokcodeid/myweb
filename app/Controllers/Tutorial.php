@@ -48,10 +48,34 @@ class Tutorial extends BaseController
 			'kategori' => $categori,
 			'categoriItem' => $categoriItem,
 			'itemselected' => $itemselected,
-			'content' => $content
+			'content' => $content,
+			'slug' => $slug
 		];
 		return view('tutorial/index', $data);
 	}
 
+	public function comment($slug)
+	{
+		// pastikan user login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		// lakukan validasi
+		$validationRule = [
+			'txtComment' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Komentar harus diisi'
+				]
+			]
+		];
+		// redirect error
+		if (!$this->validate($validationRule)) {
+			session()->setFlashdata('errors', $this->validator->getErrors());
+			return redirect()->to(base_url('tutorial/' . $slug));
+		}
+
+		return redirect()->to(base_url('tutorial/' . $slug));
+	}
 
 }
