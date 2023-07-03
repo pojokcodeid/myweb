@@ -170,15 +170,11 @@ $lastElement = end($list);
 
               <div class="small d-flex justify-content-start">
                 <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-up-fill"></i>&nbsp;<p class="mb-0">Like</p>
+                  <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
                 </a>
                 <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-chat-left-text-fill"></i>&nbsp;
-                  <p class="mb-0">Comment</p>
-                </a>
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-share"></i>&nbsp;
-                  <p class="mb-0">Share</p>
+                  <i class="bi bi-hand-thumbs-down"></i>&nbsp;
+                  <p class="mb-0">(0) Tidak Suka</p>
                 </a>
               </div>
             </div>
@@ -202,15 +198,11 @@ $lastElement = end($list);
 
               <div class="small d-flex justify-content-start">
                 <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-hand-thumbs-up-fill"></i>&nbsp;<p class="mb-0">Like</p>
+                  <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
                 </a>
                 <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-chat-left-text-fill"></i>&nbsp;
-                  <p class="mb-0">Comment</p>
-                </a>
-                <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
-                  <i class="bi bi-share"></i>&nbsp;
-                  <p class="mb-0">Share</p>
+                  <i class="bi bi-hand-thumbs-down"></i>&nbsp;
+                  <p class="mb-0">(0) Tidak Suka</p>
                 </a>
               </div>
             </div>
