@@ -310,4 +310,82 @@ class Auth extends BaseController
       return redirect()->to(base_url('profile'));
     }
   }
+
+  public function updatePassword()
+  {
+    // pastikan user login
+    if (!session('user_id')) {
+      return redirect()->to(base_url('/'));
+    }
+    // validasi data
+    $validationRule = [
+      'oldpassword' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => 'Password lama harus diisi'
+        ]
+      ],
+      'newpassword1' => [
+        'rules' => 'required|password_strength[8]',
+        'errors' => [
+          'required' => 'Password baru harus diisi',
+          'min_length' => 'Password minimal 8 karakter'
+        ]
+      ],
+      'newpassword2' => [
+        'rules' => 'required|matches[newpassword1]',
+        'errors' => [
+          'required' => 'Ulangi password baru harus diisi',
+          'matches' => 'Ulangi password baru tidak sama'
+        ]
+      ]
+    ];
+    if (!$this->validate($validationRule)) {
+      session()->setFlashdata('errors', $this->validator->getErrors());
+      session()->setFlashdata('tabActive', 2);
+      return redirect()->to(base_url('profile'));
+    }
+
+    // cek password lama
+    $userModel = new UserModel();
+    $user = $userModel->where('user_id', session('user_id'))->first();
+    if (!password_verify($this->request->getVar('oldpassword'), $user['password'])) {
+      $pesan = [
+        'errors' => 'Password lama tidak valid'
+      ];
+      session()->setFlashdata('pesan', $pesan);
+      session()->setFlashdata('tabActive', 2);
+      return redirect()->to(base_url('profile'));
+    }
+
+    if (password_verify($this->request->getVar('newpassword1'), $user['password'])) {
+      $pesan = [
+        'errors' => 'Password tidak boleh sama dengan password lama'
+      ];
+      session()->setFlashdata('pesan', $pesan);
+      session()->setFlashdata('tabActive', 2);
+      return redirect()->to(base_url('profile'));
+    }
+
+    // update data
+    $data = [
+      'password' => password_hash($this->request->getVar('newpassword1'), PASSWORD_BCRYPT)
+    ];
+    $status = $userModel->update(session('user_id'), $data);
+    if ($status) {
+      $pesan = [
+        'success' => 'Password berhasil diubah'
+      ];
+      session()->setFlashdata('pesan', $pesan);
+      session()->setFlashdata('tabActive', 2);
+      return redirect()->to(base_url('profile'));
+    } else {
+      $pesan = [
+        'errors' => 'Password gagal diubah'
+      ];
+      session()->setFlashdata('pesan', $pesan);
+      session()->setFlashdata('tabActive', 2);
+      return redirect()->to(base_url('profile'));
+    }
+  }
 }

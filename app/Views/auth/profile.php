@@ -1,5 +1,16 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content'); ?>
+<?= $this->include('validation/alert'); ?>
+<?= $this->include('validation/warning'); ?>
+<?php
+// memastikan tab active default =1
+$tab = 1;
+if (session()->getFlashdata('tabActive')) {
+  if (session()->getFlashdata('tabActive') == 2) {
+    $tab = 2;
+  }
+}
+?>
 <div class="container content">
   <div class="col">
     <div class="row">
@@ -94,18 +105,21 @@
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs border-0" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" data-bs-toggle="tab" href="#data"><i
-                          class="bi bi-person-lines-fill"></i> Data</a>
+                      <a class="nav-link <?php if ($tab == 1)
+                        echo 'active'; ?>" data-bs-toggle="tab" href="#data"><i class="bi bi-person-lines-fill"></i>
+                        Data</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="tab" href="#akun"><i class="bi bi-person-fill-lock"></i>
+                      <a class="nav-link <?php if ($tab == 2)
+                        echo 'active'; ?>" data-bs-toggle="tab" href="#akun"><i class="bi bi-person-fill-lock"></i>
                         Akun</a>
                     </li>
                   </ul>
 
                   <!-- Tab panes -->
                   <div class="tab-content">
-                    <div id="data" class="container tab-pane active"><br>
+                    <div id="data" class="container tab-pane <?php if ($tab == 1)
+                      echo 'active'; ?>"><br>
                       <h4>Personal Data</h4>
                       <form action="<?= base_url('auth/updateprofil') ?>" method="post">
                         <div class="col-md-6 col-lg-6 col-xl-4 mb-4 form-outline <?php if (isset(session()->getFlashdata('errors')['nama']))
@@ -142,27 +156,37 @@
                         </div>
                       </form>
                     </div>
-                    <div id="akun" class="container tab-pane fade"><br>
+                    <div id="akun" class="container tab-pane <?php if ($tab == 2)
+                      echo 'active'; ?>"><br>
                       <h4>Personal Akun</h4>
-                      <form action="#">
+                      <form action="<?= base_url('auth/updatepassword') ?>" method="post">
                         <input type="hidden" name="email" value="<?= $user['email']; ?>">
-                        <div class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4">
+                        <div
+                          class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4 <?php setErrorClass('errors', 'oldpassword'); ?>">
                           <label for="oldpassword">Password Lama :</label>
                           <input type="password" id="oldpassword" value="" name="oldpassword" class="form-control"
                             autocomplete="off" />
-                          <small></small>
+                          <small>
+                            <?php setErrorMsg('errors', 'oldpassword') ?>
+                          </small>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4">
+                        <div
+                          class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4 <?php setErrorClass('errors', 'newpassword1'); ?>">
                           <label for="newpassword1">Password Baru :</label>
                           <input type="password" id="newpassword1" value="" name="newpassword1" class="form-control"
                             autocomplete="off" />
-                          <small></small>
+                          <small>
+                            <?php setErrorMsg('errors', 'newpassword1') ?>
+                          </small>
                         </div>
 
-                        <div class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4">
+                        <div
+                          class="col-md-6 col-lg-6 col-xl-4 form-outline mb-4 <?php setErrorClass('errors', 'newpassword2'); ?>">
                           <label for="newpassword2">Ulangi Password Baru :</label>
                           <input type="password" value="" id="newpassword2" name="newpassword2" class="form-control" />
-                          <small></small>
+                          <small>
+                            <?php setErrorMsg('errors', 'newpassword2') ?>
+                          </small>
                         </div>
                         <div class="d-flex justify-content-start">
                           <button type="submit" class="btn btn-primary btn-block">Ubah</button>
