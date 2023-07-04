@@ -170,8 +170,8 @@ $lastElement = end($list);
                         aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
-                            <form onsubmit="validInput(this);return false;"
-                              action="<?= base_url('tutorial/commentUpdate/') . $slug ?>" method="post">
+                            <form name="fUpdate" onsubmit="validInput(this);return false;"
+                              action="<?= base_url('commentUpdate/') . $slug ?>" method="post">
                               <div class="modal-header border-0">
                                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -198,26 +198,92 @@ $lastElement = end($list);
                         <ul class="dropdown-menu dropdown-menu-end">
                           <li><a class="dropdown-item" data-bs-target="#exampleModalToggle<?= $item['comment_id'] ?>"
                               data-bs-toggle="modal" href="#">Update</a></li>
-                          <li><a class="dropdown-item" href="#">Delete</a></li>
+                          <li><a class="dropdown-item"
+                              href="<?= base_url('commentDelete/') . $slug . '/' . $item['comment_id'] ?>">Delete</a>
+                          </li>
                         </ul>
                       </div>
                     <?php endif; ?>
                   </div>
                 </div>
 
-                <p class="mt-3 mb-4 pb-2">
+                <p class=" mt-2 mb-2 pb-2">
                   <?= $item['comment'] ?>
                 </p>
 
+                <!-- modal commenttar komen -->
+                <div class="modal fade" id="nestedComment<?= $item['comment_id'] ?>" aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <form onsubmit="validInput(this);return false;"
+                        action="<?= base_url('nestedComment/') . $slug . '/' . $content['id'] ?>" method="post">
+                        <div class="modal-header border-0">
+                          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Untuk -
+                            <?= ucwords($item['nama']) ?>
+                          </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
+                          <div class="form-outline w-100">
+                            <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
+                              rows="4"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                          <button type="submit" class="btn btn-primary" data-bs-toggle="modal">Kirim</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- end modal -->
+
                 <div class="small d-flex justify-content-start">
                   <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
-                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0) Suka</p>
+                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0)</p>
                   </a>
                   <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
                     <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                    <p class="mb-0">(0) Tidak Suka</p>
+                    <p class="mb-0">(0)</p>
+                  </a>
+                  <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
+                    class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+                    <i class="bi bi-chat-left-text"></i></i>&nbsp;
+                    <p class="mb-0">(
+                      <?= count($item['parent']) ?>)
+                    </p>
                   </a>
                 </div>
+
+                <!-- parent start -->
+                <?php
+                foreach ($item['parent'] as $parent):
+                  ?>
+                  <div class="ms-5 d-flex flex-start mt-4">
+                    <a class="me-3" href="#">
+                      <img class="rounded-circle shadow-1-strong" src="<?= base_url('img/profile/') . $parent['image'] ?>"
+                        alt="avatar" width="50" height="50" />
+                    </a>
+                    <div class="flex-grow-1 flex-shrink-1">
+                      <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <p class="mb-1">
+                            <?= ucwords($parent['nama']) ?> <span class="small">-
+                              <?= date_format(date_create($parent['created_at']), "Y M d H:i") ?>
+                            </span>
+                          </p>
+                        </div>
+                        <p class="small mb-0">
+                          <?= $parent['comment'] ?>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach ?>
+                <!-- parent end -->
+
               </div>
             <?php endforeach ?>
             <div class="card-body">
