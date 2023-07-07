@@ -28,6 +28,22 @@ class TutorialModel extends Model
     return $stmt->getResultArray();
   }
 
+  public function getCommentById($id, $limit = 5)
+  {
+    $db = db_connect();
+    $query = "
+    select 
+      u.user_id,c.comment_id,c.comment,c.tutorial_id,
+      c.created_at, u.nama, u.image, c.parent_id
+    from comment c inner join `user` u on(c.user_id=u.user_id)
+    where c.comment_id = ?
+      and c.parent_id = 0
+      order by c.created_at desc
+      limit ?";
+    $stmt = $db->query($query, [$id, $limit]);
+    return $stmt->getRowArray();
+  }
+
   public function getParent($id)
   {
     $db = db_connect();

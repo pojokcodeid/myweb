@@ -187,6 +187,45 @@ function submitFrm(id) {
     },
   });
 }
+function insertFrm(url) {
+  var text = $(".commentData").val();
+  if (text == "") {
+    Swal.fire({
+      title: "Error!",
+      text: "Input Komentar Masih Kosong",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
+    return false;
+  }
+  // ambil url
+  let targetUrl = url;
+  $.ajax({
+    type: "POST",
+    url: targetUrl,
+    data: {
+      txtComment: text,
+    },
+    cache: false,
+    success: function (data) {
+      $(".commentData")[0].value = "";
+      $(".commentData").html("");
+      function insertAfter(newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+      }
+      function addNew(data) {
+        let contentComment = document.getElementById("commentarContainer");
+        let div = document.createElement("div");
+        div.innerHTML = data;
+        insertAfter(div, contentComment.lastElementChild);
+      }
+      addNew(data);
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr, status, error);
+    },
+  });
+}
 
 function delCom(target, parent = 0) {
   $.get(target, function (data, status) {

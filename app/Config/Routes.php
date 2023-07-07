@@ -34,6 +34,7 @@ $routes->get('/about', 'Home::about');
 $routes->get('/tutorial', 'Tutorial::index');
 $routes->get('/tutorial/(:segment)', 'Tutorial::view/$1');
 $routes->post('/tutorial/comment/(:segment)/(:segment)', 'Tutorial::comment/$1/$2');
+$routes->post('/tutorial/comment2/(:segment)/(:segment)', 'Tutorial::comment2/$1/$2');
 $routes->post('/commentUpdate/(:segment)', 'Tutorial::commentUpdate/$1');
 $routes->get('/commentDelete/(:segment)/(:segment)', 'Tutorial::commentDelete/$1/$2');
 $routes->post('/nestedComment/(:segment)/(:segment)', 'Tutorial::nestedComment/$1/$2');

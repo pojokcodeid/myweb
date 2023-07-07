@@ -89,8 +89,6 @@ class Tutorial extends BaseController
 			session()->setFlashdata('errors', $this->validator->getErrors());
 			return redirect()->to(base_url('tutorial/' . $slug));
 		}
-		$categori = $this->kategoriModel->where('slug', $slug)->first();
-		d($categori);
 		$comment = $this->request->getVar('txtComment');
 		$data = [
 			'user_id' => session('user_id'),
@@ -108,6 +106,50 @@ class Tutorial extends BaseController
 			];
 			session()->setFlashdata('errors', $error);
 			return redirect()->to(base_url('tutorial/' . $slug));
+		}
+	}
+	public function comment2($slug, $id)
+	{
+		// pastikan user login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		// lakukan validasi
+		$validationRule = [
+			'txtComment' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Komentar harus diisi'
+				]
+			]
+		];
+		// redirect error
+		if (!$this->validate($validationRule)) {
+			session()->setFlashdata('errors', $this->validator->getErrors());
+			return redirect()->to(base_url('tutorial/' . $slug));
+		}
+		$comment = $this->request->getVar('txtComment');
+		$data = [
+			'user_id' => session('user_id'),
+			'tutorial_id' => $id,
+			'comment' => $comment,
+			'created_at' => date('Y-m-d H:i:s'),
+		];
+		$commentModel = new CommentModel();
+		$process = $commentModel->save($data);
+		if ($process) {
+			// ambil data komen
+			$last_insert_id = $commentModel->getInsertID();
+			$tutorialModel = new TutorialModel();
+			$hasil = $tutorialModel->getCommentById($last_insert_id, 5);
+			$data = [
+				'item' => $hasil,
+				'slug' => $slug,
+			];
+			return view('tutorial/newcomment', $data);
+		} else {
+			// jika error
+			echo 'Gagal menyimpan data';
 		}
 	}
 
