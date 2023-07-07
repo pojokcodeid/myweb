@@ -157,53 +157,56 @@ $lastElement = end($list);
                 <div class="d-flex flex-start align-items-center">
                   <img class="rounded-circle shadow-1-strong me-3 float-end"
                     src="<?= base_url('img/profile/') . $item['image'] ?>" alt="avatar" width="60" height="60" />
-                  <div>
-                    <h6 class="fw-bold text-primary mb-1">
+                  <div class="w-100">
+                    <h6 class=" fw-bold text-primary mb-1">
                       <?= ucwords($item['nama']) ?>
                     </h6>
-                    <p class="text-muted small mb-0">
-                      Dibuat Pada -
-                      <?= date_format(date_create($item['created_at']), "Y M d H:i") ?>
-                    </p>
-                    <?php if (session('user_id') == $item['user_id']): ?>
-                      <div class="modal fade" id="exampleModalToggle<?= $item['comment_id'] ?>" aria-hidden="true"
-                        aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <form name="fUpdate" onsubmit="validInput(this);return false;"
-                              action="<?= base_url('commentUpdate/') . $slug ?>" method="post">
-                              <div class="modal-header border-0">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
-                                <div class="form-outline w-100">
-                                  <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
-                                    rows="4"><?= $item['comment'] ?></textarea>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p class="text-muted small mb-0">
+                        Dibuat Pada -
+                        <?= date_format(date_create($item['created_at']), "Y M d H:i") ?>
+                      </p>
+                      <?php if (session('user_id') == $item['user_id']): ?>
+                        <div class="modal fade" id="exampleModalToggle<?= $item['comment_id'] ?>" aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <form name="fUpdate" onsubmit="validInput(this);return false;"
+                                action="<?= base_url('commentUpdate/') . $slug ?>" method="post">
+                                <div class="modal-header border-0">
+                                  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Komentar</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                                 </div>
-                              </div>
-                              <div class="modal-footer border-0">
-                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal">Ubah</button>
-                              </div>
-                            </form>
+                                <div class="modal-body">
+                                  <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
+                                  <div class="form-outline w-100">
+                                    <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
+                                      rows="4"><?= $item['comment'] ?></textarea>
+                                  </div>
+                                </div>
+                                <div class="modal-footer border-0">
+                                  <button type="submit" class="btn btn-primary" data-bs-toggle="modal">Ubah</button>
+                                </div>
+                              </form>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
-                          data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="bi bi-three-dots-vertical"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                          <li><a class="dropdown-item" data-bs-target="#exampleModalToggle<?= $item['comment_id'] ?>"
-                              data-bs-toggle="modal" href="#">Update</a></li>
-                          <li><a class="dropdown-item"
-                              href="<?= base_url('commentDelete/') . $slug . '/' . $item['comment_id'] ?>">Delete</a>
-                          </li>
-                        </ul>
-                      </div>
-                    <?php endif; ?>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" data-bs-target="#exampleModalToggle<?= $item['comment_id'] ?>"
+                                data-bs-toggle="modal" href="#">Update</a></li>
+                            <li><a class="dropdown-item"
+                                href="<?= base_url('commentDelete/') . $slug . '/' . $item['comment_id'] ?>">Delete</a>
+                            </li>
+                          </ul>
+                        </div>
+                      <?php endif; ?>
+                    </div>
                   </div>
                 </div>
 
@@ -242,17 +245,17 @@ $lastElement = end($list);
 
                 <div class="small d-flex justify-content-start">
                   <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
-                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">(0)</p>
+                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">0</p>
                   </a>
                   <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
                     <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                    <p class="mb-0">(0)</p>
+                    <p class="mb-0">0</p>
                   </a>
                   <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
                     class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
                     <i class="bi bi-chat-left-text"></i></i>&nbsp;
-                    <p class="mb-0">(
-                      <?= count($item['parent']) ?>)
+                    <p class="mb-0">
+                      <?= count($item['parent']) ?>
                     </p>
                   </a>
                 </div>
@@ -261,7 +264,7 @@ $lastElement = end($list);
                 <?php
                 foreach ($item['parent'] as $parent):
                   ?>
-                  <div class="ms-5 d-flex flex-start mt-4">
+                  <div class="ms-3 d-flex flex-start mt-2 p-2 rounded shadow-sm">
                     <a class="me-3" href="#">
                       <img class="rounded-circle shadow-1-strong" src="<?= base_url('img/profile/') . $parent['image'] ?>"
                         alt="avatar" width="50" height="50" />
@@ -272,8 +275,22 @@ $lastElement = end($list);
                           <p class="mb-1">
                             <?= ucwords($parent['nama']) ?> <span class="small">-
                               <?= date_format(date_create($parent['created_at']), "Y M d H:i") ?>
+                              &nbsp;
                             </span>
                           </p>
+                          <?php if (session('user_id') == $parent['user_id']): ?>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                    href="<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>">Delete</a>
+                                </li>
+                              </ul>
+                            </div>
+                          <?php endif ?>
                         </div>
                         <p class="small mb-0">
                           <?= $parent['comment'] ?>
