@@ -136,6 +136,8 @@ function editMode(id) {
   text.classList.add("form-control");
   text.disabled = false;
   text.setSelectionRange(end, end);
+  text.style.border = "none";
+  text.style.boxShadow = "none";
   text.focus();
   let bSubmit = document.getElementById("bSubmit" + id);
   bSubmit.classList.remove("visually-hidden");
@@ -143,9 +145,11 @@ function editMode(id) {
 
 function reset2(id) {
   let text = document.getElementById("txtComment" + id);
+  let temp = document.getElementById("temp" + id);
   text.classList.remove("form-control");
   text.classList.add("form-control-plaintext");
   text.disabled = true;
+  text.innerText = temp.value;
   let bSubmit = document.getElementById("bSubmit" + id);
   bSubmit.classList.add("visually-hidden");
 }
@@ -175,6 +179,8 @@ function submitFrm(id) {
     success: function (data) {
       reset2(id);
       $("#txtComment" + id).val(data);
+      let temp = document.getElementById("temp" + id);
+      temp.value = data;
     },
     error: function (xhr, status, error) {
       console.error(xhr, status, error);

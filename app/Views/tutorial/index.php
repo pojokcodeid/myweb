@@ -187,9 +187,10 @@ $lastElement = end($list);
 
                 <p class=" mt-2 mb-2 pb-2">
                 <div class="mb-3 row">
-                  <form>
+                  <form id="frmEdit">
                     <input type="hidden" id="targetUrl<?= $item['comment_id'] ?>"
                       value="<?= base_url('commentUpdate/') . $slug ?>">
+                    <input type="hidden" id="temp<?= $item['comment_id'] ?>" value="<?= $item['comment'] ?>">
                     <input type="hidden" id="comid<?= $item['comment_id'] ?>" name="comid"
                       value="<?= $item['comment_id'] ?>">
                     <input type="hidden" id="defaultVal<?= $item['comment_id'] ?>" value="<?= $item['comment'] ?>">
@@ -261,23 +262,6 @@ $lastElement = end($list);
                   </div>
                 </div>
                 <!-- end modal -->
-
-                <!-- <div class="small d-flex justify-content-start">
-                  <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
-                    <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">0</p>
-                  </a>
-                  <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
-                    <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                    <p class="mb-0">0</p>
-                  </a>
-                  <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
-                    class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
-                    <i class="bi bi-chat-left-text"></i></i>&nbsp;
-                    <p class="mb-0">
-                      <?= count($item['parent']) ?>
-                    </p>
-                  </a>
-                </div> -->
 
                 <!-- parent start -->
                 <?php
