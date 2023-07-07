@@ -143,7 +143,8 @@ class Tutorial extends BaseController
 		$commentModel = new CommentModel();
 		$process = $commentModel->update($key, $data);
 		if ($process) {
-			return redirect()->to(base_url('tutorial/' . $slug));
+			// return redirect()->to(base_url('tutorial/' . $slug));
+			echo $comment;
 		} else {
 			$error = [
 				'errors' => 'Gagal menyimpan data'
