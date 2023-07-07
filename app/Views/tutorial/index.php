@@ -214,7 +214,7 @@ $lastElement = end($list);
                           <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
                             class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
                             <i class="bi bi-chat-left-text"></i></i>&nbsp;
-                            <p class="mb-0">
+                            <p class="mb-0" id="count<?= $item['comment_id'] ?>">
                               <?= count($item['parent']) ?>
                             </p>
                           </a>
@@ -255,12 +255,13 @@ $lastElement = end($list);
                           </div>
                         </div>
                         <div class="modal-footer border-0">
-                          <button type="submit" class="btn btn-primary" data-bs-toggle="modal">Kirim</button>
+                          <button type="submit" class="btn btn-primary">Kirim</button>
                         </div>
                       </form>
                     </div>
                   </div>
                 </div>
+
                 <!-- end modal -->
 
                 <!-- parent start -->
@@ -289,7 +290,7 @@ $lastElement = end($list);
                               </button>
                               <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item"
-                                    href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>');">Delete</a>
+                                    href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>',<?= $parent['parent_id'] ?>);">Delete</a>
                                 </li>
                               </ul>
                             </div>

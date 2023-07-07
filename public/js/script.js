@@ -188,7 +188,7 @@ function submitFrm(id) {
   });
 }
 
-function delCom(target) {
+function delCom(target, parent = 0) {
   $.get(target, function (data, status) {
     if (status) {
       // hilangkan record
@@ -197,6 +197,8 @@ function delCom(target) {
         "card-body bg-body-tertiary mb-2 rounded ms-3 d-flex flex-start mt-2 p-2 shadow-sm"
       );
       $("#container" + data).css("display", "none");
+      // update count parent
+      $("#count" + parent).html(parseInt($("#count" + parent).text()) - 1);
     }
   });
 }
