@@ -187,3 +187,16 @@ function submitFrm(id) {
     },
   });
 }
+
+function delCom(target) {
+  $.get(target, function (data, status) {
+    if (status) {
+      // hilangkan record
+      $("#container" + data).html("");
+      $("#container" + data).removeClass(
+        "card-body bg-body-tertiary mb-2 rounded ms-3 d-flex flex-start mt-2 p-2 shadow-sm"
+      );
+      $("#container" + data).css("display", "none");
+    }
+  });
+}

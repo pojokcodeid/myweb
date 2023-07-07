@@ -152,7 +152,7 @@ $lastElement = end($list);
           <div class="card border-0">
             <h4>Komentar</h4>
             <?php foreach ($comment as $item): ?>
-              <div class="card-body bg-body-tertiary mb-2 rounded">
+              <div class="card-body bg-body-tertiary mb-2 rounded" id="container<?= $item['comment_id'] ?>">
                 <div class="d-flex flex-start align-items-center">
                   <img class="rounded-circle shadow-1-strong me-3 float-end"
                     src="<?= base_url('img/profile/') . $item['image'] ?>" alt="avatar" width="60" height="60" />
@@ -176,7 +176,7 @@ $lastElement = end($list);
                                 href="javascript:void(0);">Ubah</a>
                             </li>
                             <li><a class="dropdown-item"
-                                href="<?= base_url('commentDelete/') . $slug . '/' . $item['comment_id'] ?>">Hapus</a>
+                                href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $item['comment_id'] ?>')">Hapus</a>
                             </li>
                           </ul>
                         </div>
@@ -267,7 +267,7 @@ $lastElement = end($list);
                 <?php
                 foreach ($item['parent'] as $parent):
                   ?>
-                  <div class="ms-3 d-flex flex-start mt-2 p-2 rounded shadow-sm">
+                  <div class="ms-3 d-flex flex-start mt-2 p-2 rounded shadow-sm" id="container<?= $parent['comment_id'] ?>">
                     <a class="me-3" href="#">
                       <img class="rounded-circle shadow-1-strong" src="<?= base_url('img/profile/') . $parent['image'] ?>"
                         alt="avatar" width="50" height="50" />
@@ -289,7 +289,7 @@ $lastElement = end($list);
                               </button>
                               <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item"
-                                    href="<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>">Delete</a>
+                                    href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>');">Delete</a>
                                 </li>
                               </ul>
                             </div>

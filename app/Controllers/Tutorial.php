@@ -164,7 +164,8 @@ class Tutorial extends BaseController
 		$commentModel = new CommentModel();
 		$process = $commentModel->deleteComment($id, session('user_id'));
 		if ($process) {
-			return redirect()->to(base_url('tutorial/' . $slug));
+			echo $id;
+			// return redirect()->to(base_url('tutorial/' . $slug));
 		}
 	}
 
