@@ -148,7 +148,7 @@ $lastElement = end($list);
         </div>
       </div>
       <div class="row d-flex justify-content-center p-4 bg-body rounded shadow-sm m-1">
-        <div class="col">
+        <div class="col" id="containerComment">
           <div class="card border-0">
             <h4>Komentar</h4>
             <?php foreach ($comment as $item): ?>
@@ -224,7 +224,7 @@ $lastElement = end($list);
                       <div class="col-6">
                         <div id="bSubmit<?= $item['comment_id'] ?>"
                           class="gap-1 d-flex justify-content-end visually-hidden mt-2">
-                          <button type="reset" onclick="reset2(<?= $item['comment_id'] ?>)" class="btn b-xs btn-secondary"
+                          <button onclick="reset2(<?= $item['comment_id'] ?>)" class="btn b-xs btn-secondary"
                             type="button">Reset</button>
                           <button onclick="submitFrm(<?= $item['comment_id'] ?>)" type="button"
                             class="btn b-xs btn-primary" type="button">Ubah</button>
@@ -289,6 +289,9 @@ $lastElement = end($list);
                                 <i class="bi bi-three-dots-vertical"></i>
                               </button>
                               <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" onclick="editMode(<?= $parent['comment_id'] ?>)"
+                                    href="javascript:void(0);">Ubah</a>
+                                </li>
                                 <li><a class="dropdown-item"
                                     href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>',<?= $parent['parent_id'] ?>);">Delete</a>
                                 </li>
@@ -297,7 +300,36 @@ $lastElement = end($list);
                           <?php endif ?>
                         </div>
                         <p class="small mb-0">
-                          <?= $parent['comment'] ?>
+                          <!-- start -->
+                        <form action="">
+                          <input type="hidden" id="targetUrl<?= $parent['comment_id'] ?>"
+                            value="<?= base_url('commentUpdate/') . $slug ?>">
+                          <input type="hidden" id="temp<?= $parent['comment_id'] ?>" value="<?= $parent['comment'] ?>">
+                          <input type="hidden" id="comid<?= $parent['comment_id'] ?>" name="comid"
+                            value="<?= $parent['comment_id'] ?>">
+                          <input type="hidden" id="defaultVal<?= $parent['comment_id'] ?>"
+                            value="<?= $parent['comment'] ?>">
+                          <div class="col-lg-12">
+                            <textarea disabled class="form-control-plaintext" id="txtComment<?= $parent['comment_id'] ?>"
+                              name="txtComment" rows="3"><?= $parent['comment'] ?></textarea>
+                          </div>
+                          <div class="row justify-content-between">
+                            <div class="col-6">
+
+                            </div>
+                            <!--  -->
+                            <div class="col-6">
+                              <div id="bSubmit<?= $parent['comment_id'] ?>"
+                                class="gap-1 d-flex justify-content-end visually-hidden mt-2">
+                                <button onclick="reset2(<?= $parent['comment_id'] ?>)" class="btn b-xs btn-secondary"
+                                  type="button">Reset</button>
+                                <button onclick="submitFrm(<?= $parent['comment_id'] ?>)" type="button"
+                                  class="btn b-xs btn-primary" type="button">Ubah</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                        <!--  end -->
                         </p>
                       </div>
                     </div>

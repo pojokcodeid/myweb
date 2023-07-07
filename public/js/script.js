@@ -146,10 +146,10 @@ function editMode(id) {
 function reset2(id) {
   let text = document.getElementById("txtComment" + id);
   let temp = document.getElementById("temp" + id);
+  text.value = temp.value;
   text.classList.remove("form-control");
   text.classList.add("form-control-plaintext");
   text.disabled = true;
-  text.innerText = temp.value;
   let bSubmit = document.getElementById("bSubmit" + id);
   bSubmit.classList.add("visually-hidden");
 }
