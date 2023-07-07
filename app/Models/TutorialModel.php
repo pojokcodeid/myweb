@@ -15,14 +15,15 @@ class TutorialModel extends Model
   {
     $db = db_connect();
     $query = "
-    select 
+    select * from 
+    (select 
       u.user_id,c.comment_id,c.comment,
       c.created_at, u.nama, u.image
     from comment c inner join `user` u on(c.user_id=u.user_id)
     where c.tutorial_id = ?
       and c.parent_id = 0
       order by c.created_at desc
-      limit ?;";
+      limit ?) as a order by a.created_at asc;";
     $stmt = $db->query($query, [$id, $limit]);
     return $stmt->getResultArray();
   }
