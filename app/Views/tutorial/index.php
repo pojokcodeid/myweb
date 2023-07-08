@@ -371,8 +371,40 @@ $lastElement = end($list);
               <?php endforeach ?>
             </div>
             <div class="card-body">
-              <a href="#" class="text-decoration-none" role="button">Tampil Lebih Banyak<i
-                  class="bi bi-arrow-right-short" style="font-size: 24px"></i></a>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm">
+                  <?php if ($currpage > 1): ?>
+                    <li class="page-item">
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/?page=' . $currpage - 1 ?>"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                  <?PHP endif ?>
+                  <?php
+                  $cpage = "";
+                  for ($i = 1; $i <= $count; $i++):
+                    if ($i == $currpage) {
+                      $cpage = "active";
+                    } else {
+                      $cpage = "";
+                    }
+                    ?>
+                    <li class="page-item"><a class="page-link <?= $cpage ?>"
+                        href="<?= base_url('tutorial/') . $slug . '/?page=' . $i ?>">
+                        <?= $i ?>
+                      </a></li>
+                  <?php endfor ?>
+                  <?php if ($currpage < $count): ?>
+                    <li class="page-item">
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/?page=' . $currpage + 1 ?>"
+                        aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  <?php endif ?>
+                </ul>
+              </nav>
             </div>
             <div class="bg-body-tertiary rounded p-2">
               <form id="frmComment" name="frmComment"

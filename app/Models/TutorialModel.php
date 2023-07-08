@@ -11,7 +11,7 @@ class TutorialModel extends Model
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
 
-  public function getCommentLimit($id, $limit)
+  public function getCommentLimit($id, $limit = 5, $page = 0)
   {
     $db = db_connect();
     $query = "
@@ -23,8 +23,8 @@ class TutorialModel extends Model
     where c.tutorial_id = ?
       and c.parent_id = 0
       order by c.created_at desc
-      limit ?) as a order by a.created_at asc;";
-    $stmt = $db->query($query, [$id, $limit]);
+      limit ?, ?) as a order by a.created_at asc;";
+    $stmt = $db->query($query, [$id, $page, $limit]);
     return $stmt->getResultArray();
   }
 

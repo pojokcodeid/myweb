@@ -25,4 +25,12 @@ class CommentModel extends Model
     return $db->transStatus();
   }
 
+  public function rowCount()
+  {
+    $db = db_connect();
+    $sql = "select count(*) as count from comment where parent_id=0";
+    $stmt = $db->query($sql);
+    return $stmt->getRowArray();
+  }
+
 }

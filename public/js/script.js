@@ -257,6 +257,7 @@ function commentFrm(id, url) {
       function insertAfter(newNode, existingNode) {
         existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
       }
+      console.log("containerComment" + id);
       function addNew(data) {
         let contentComment = document.getElementById("containerComment" + id);
         let div = document.createElement("div");

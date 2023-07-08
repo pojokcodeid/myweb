@@ -13,11 +13,13 @@ class Tutorial extends BaseController
 	private $groupKategoriModel;
 	private $kategoriModel;
 	private $tutorialModel;
+	private $commentModel;
 	public function __construct()
 	{
 		$this->groupKategoriModel = new GroupKategoriModel();
 		$this->kategoriModel = new KategoriModel();
 		$this->tutorialModel = new TutorialModel();
+		$this->commentModel = new CommentModel();
 	}
 	public function index()
 	{
@@ -31,6 +33,18 @@ class Tutorial extends BaseController
 	}
 	public function view($slug)
 	{
+		$count = 2;
+		$page = 0;
+		$limit = 0;
+		$currentPage = 1;
+		if (isset($_GET['page'])) {
+			$page = $_GET['page'];
+			if ($page == 0) {
+				$page = 1;
+			}
+			$limit = ($page - 1) * $count;
+			$currentPage = $page;
+		}
 		$categori = $this->kategoriModel->where('slug', $slug)->first();
 		$categoriItem = [];
 		$itemselected = $categori;
@@ -43,9 +57,11 @@ class Tutorial extends BaseController
 		}
 		$content = $this->tutorialModel->where('kategoriid', $itemselected['id'])->first();
 		// get list commnet top 5
-		$list = $this->tutorialModel->getCommentLimit($content['id'], 5);
+		$list = $this->tutorialModel->getCommentLimit($content['id'], $count, $limit);
 		// dapatkan data like dislike
 		$likeModel = new LikeModel();
+		$tutoerial = $this->commentModel->rowCount();
+		$ountpage = ceil($tutoerial['count'] / $count);
 		$hasil = [];
 		foreach ($list as $item) {
 			$islike = 0;
@@ -83,7 +99,9 @@ class Tutorial extends BaseController
 			'itemselected' => $itemselected,
 			'content' => $content,
 			'slug' => $slug,
-			'comment' => $hasil
+			'comment' => $hasil,
+			'count' => $ountpage,
+			'currpage' => $currentPage
 		];
 		return view('tutorial/index', $data);
 	}
