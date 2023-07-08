@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
+use App\Models\LikeModel;
 use App\Models\TutorialModel;
 use App\Models\CommentModel;
 
@@ -43,8 +44,22 @@ class Tutorial extends BaseController
 		$content = $this->tutorialModel->where('kategoriid', $itemselected['id'])->first();
 		// get list commnet top 5
 		$list = $this->tutorialModel->getCommentLimit($content['id'], 5);
+		// dapatkan data like dislike
+		$likeModel = new LikeModel();
 		$hasil = [];
 		foreach ($list as $item) {
+			$islike = 0;
+			$isdislike = 0;
+			$dilike = $likeModel->isLikeDislike($item['comment_id'], session('user_id'));
+			foreach ($dilike as $d) {
+				if ($d['likests'] == 1) {
+					$islike = 1;
+				}
+
+				if ($d['dislike'] == 1) {
+					$isdislike = 1;
+				}
+			}
 			array_push($hasil, [
 				'user_id' => $item['user_id'],
 				'nama' => $item['nama'],
@@ -52,9 +67,13 @@ class Tutorial extends BaseController
 				'comment' => $item['comment'],
 				'created_at' => $item['created_at'],
 				'comment_id' => $item['comment_id'],
-				'parent' => $this->tutorialModel->getParent($item['comment_id'])
+				'parent' => $this->tutorialModel->getParent($item['comment_id']),
+				'likes' => $likeModel->getLikeCount($item['comment_id']),
+				'islike' => $islike,
+				'isdislike' => $isdislike
 			]);
 		}
+
 		$data = [
 			'title' => 'Tutorial',
 			'groupKategori' => $this->groupKategoriModel->findAll(),
@@ -296,6 +315,45 @@ class Tutorial extends BaseController
 			];
 			session()->setFlashdata('errors', $error);
 			echo "Telah Terjadi Eroor";
+		}
+	}
+
+	// function for like action
+	public function like($id)
+	{
+		// pstikan sudah login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		$likeModel = new LikeModel();
+		// cek sudah pernah like atau belum
+		$hasilCheck = $likeModel->getLikeExists($id, session('user_id'));
+		$status = null;
+		if ($hasilCheck) {
+			// hapus artinya tidak jadi like
+			$process = $likeModel->deleteLike($id, session('user_id'));
+			$status = 0;
+		} else {
+			$status = 1;
+			// insert like baru
+			$process = $likeModel->save([
+				'user_id' => session('user_id'),
+				'comment_id' => $id,
+				'likests' => 1,
+				'dislike' => 0
+			]);
+		}
+		// dapatkan jumlah like
+		if ($process) {
+			$count = $likeModel->getLikeCount($id);
+			$hasil = [
+				'like' => is_null($count['like_count']) ? 0 : $count['like_count'],
+				'comment_id' => $id,
+				'status' => $status
+			];
+			echo json_encode($hasil);
+		} else {
+			echo 'Process error';
 		}
 	}
 }

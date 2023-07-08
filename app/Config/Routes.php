@@ -36,6 +36,7 @@ $routes->get('/tutorial/(:segment)', 'Tutorial::view/$1');
 $routes->post('/tutorial/comment/(:segment)/(:segment)', 'Tutorial::comment/$1/$2');
 $routes->post('/tutorial/comment2/(:segment)/(:segment)', 'Tutorial::comment2/$1/$2');
 $routes->post('/commentUpdate/(:segment)', 'Tutorial::commentUpdate/$1');
+$routes->post('/like/(:segment)', 'Tutorial::like/$1');
 $routes->get('/commentDelete/(:segment)/(:segment)', 'Tutorial::commentDelete/$1/$2');
 $routes->post('/nestedComment/(:segment)/(:segment)', 'Tutorial::nestedComment/$1/$2');
 $routes->post('/nestedComment2/(:segment)/(:segment)', 'Tutorial::nestedComment2/$1/$2');

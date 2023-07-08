@@ -312,3 +312,36 @@ function text2div(id, text) {
     "<div id='div" + id + "'>" + text + "</div>"
   );
 }
+
+function like(id, url) {
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {
+      id: id,
+    },
+    cache: false,
+    success: function (data) {
+      // ubah icon dan jumlahnya
+      const obj = JSON.parse(data);
+      if (obj.status == 1) {
+        // process like ubah icon likenya
+        $("#like" + id).removeClass("btn-outline-success");
+        $("#like" + id).addClass("btn-success");
+        $("#like" + id).html(
+          '<i class="bi bi-hand-thumbs-up-fill"></i> ' + obj.like
+        );
+      } else {
+        // hapus like
+        $("#like" + id).addClass("btn-outline-success");
+        $("#like" + id).removeClass("btn-success");
+        $("#like" + id).html(
+          '<i class="bi bi-hand-thumbs-up"></i> ' + obj.like
+        );
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr, status, error);
+    },
+  });
+}

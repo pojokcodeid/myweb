@@ -201,17 +201,38 @@ $lastElement = end($list);
                         </div>
                       </div>
                       <!--  -->
+                      <?php
+                      // validasi icon like
+                      $iconlike = '<i class="bi bi-hand-thumbs-up"></i>';
+                      $icondislike = '<i class="bi bi-hand-thumbs-down"></i>';
+                      $bg = 'btn-outline-success';
+                      $bgdc = 'btn-outline-success';
+                      if ($item['islike']) {
+                        $iconlike = '<i class="bi bi-hand-thumbs-up-fill"></i>';
+                        $bg = 'btn-success';
+                      }
+                      if ($item['isdislike']) {
+                        $icondislike = '<i class="bi bi-hand-thumbs-down-fill"></i>';
+                        $bgdc = 'btn-success';
+                      }
+                      $dta = $item['likes'];
+                      $likeCount = is_null($dta['like_count']) ? 0 : $dta['like_count'];
+                      $dislikeCount = is_null($dta['dislike_count']) ? 0 : $dta['dislike_count'];
+                      ?>
                       <div class="row justify-content-between">
                         <div class="col-6">
                           <div class="small d-flex justify-content-start mt-2">
-                            <a href="#!"
-                              class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
-                              <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">0</p>
+                            <a id="like<?= $item['comment_id'] ?>"
+                              href="javascript:like(<?= $item['comment_id'] ?>,'<?= base_url('like/') . $item['comment_id'] ?>')"
+                              class="btn <?= $bg ?> b-xs d-flex align-items-center me-2 text-decoration-none">
+                              <?= $iconlike . ' ' . $likeCount ?>
                             </a>
                             <a href="#!"
-                              class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
+                              class="btn <?= $bgdc ?> b-xs d-flex align-items-center me-2 text-decoration-none">
                               <i class="bi bi-hand-thumbs-down"></i>&nbsp;
-                              <p class="mb-0">0</p>
+                              <p class="mb-0">
+                                <?= $dislikeCount ?>
+                              </p>
                             </a>
                             <a href="javascript:void(0)" data-bs-target="#nestedComment<?= $item['comment_id'] ?>"
                               data-bs-toggle="modal"
