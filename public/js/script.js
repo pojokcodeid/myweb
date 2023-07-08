@@ -251,8 +251,9 @@ function commentFrm(id, url) {
     cache: false,
     success: function (data) {
       $("#nestedComment" + id).modal("hide");
-      $(".commentText")[0].value = "";
-      $(".commentText").html("");
+      $("#nestedComment" + id + " #txtCommentData").value = "";
+      $("#nestedComment" + id + " #txtCommentData").val("");
+      $("#nestedComment" + id + " #txtCommentData").html("");
       function insertAfter(newNode, existingNode) {
         existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
       }

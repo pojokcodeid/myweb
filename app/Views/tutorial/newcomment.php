@@ -46,10 +46,14 @@
       <div class="row justify-content-between">
         <div class="col-6">
           <div class="small d-flex justify-content-start mt-2">
-            <a href="#!" class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
+            <a id="like<?= $item['comment_id'] ?>"
+              href="javascript:like(<?= $item['comment_id'] ?>,'<?= base_url('like/') . $item['comment_id'] ?>')"
+              class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
               <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">0</p>
             </a>
-            <a href="#!" class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
+            <a id="dislike<?= $item['comment_id'] ?>"
+              href="javascript:dislike(<?= $item['comment_id'] ?>,'<?= base_url('dislike/') . $item['comment_id'] ?>')"
+              class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
               <i class="bi bi-hand-thumbs-down"></i>&nbsp;
               <p class="mb-0">0</p>
             </a>
@@ -89,17 +93,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
+            <input type="hidden" class="comid" name="comid" value="<?= $item['comment_id'] ?>">
             <div class="form-outline w-100">
-              <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment" rows="4"></textarea>
+              <textarea class="form-control commentText" maxlength="200" id="txtCommentData" name="txtComment"
+                rows="4"></textarea>
             </div>
           </div>
           <div class="modal-footer border-0">
-            <button type="submit" class="btn btn-primary">Kirim</button>
+            <button
+              onclick="commentFrm(<?= $item['comment_id'] ?>,'<?= base_url('nestedComment2/') . $slug . '/' . $item['tutorial_id'] ?>')"
+              type="button" class="btn btn-primary">Kirim</button>
           </div>
         </form>
       </div>
     </div>
   </div>
   <!-- end modal -->
+
+  <div id="containerComment<?= $item['comment_id'] ?>">
+    <div>&nbsp;</div>
+  </div>
 </div>
