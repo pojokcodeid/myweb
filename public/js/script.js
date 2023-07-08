@@ -130,6 +130,7 @@ function validInput(input) {
 
 // untuk comment postingan
 function editMode(id) {
+  div2text(id);
   let text = document.getElementById("txtComment" + id);
   const end = text.value.length;
   text.classList.remove("form-control-plaintext");
@@ -144,12 +145,8 @@ function editMode(id) {
 }
 
 function reset2(id) {
-  let text = document.getElementById("txtComment" + id);
   let temp = document.getElementById("temp" + id);
-  text.value = temp.value;
-  text.classList.remove("form-control");
-  text.classList.add("form-control-plaintext");
-  text.disabled = true;
+  text2div(id, temp.value);
   let bSubmit = document.getElementById("bSubmit" + id);
   bSubmit.classList.add("visually-hidden");
 }
@@ -177,10 +174,10 @@ function submitFrm(id) {
     },
     cache: false,
     success: function (data) {
-      reset2(id);
       $("#txtComment" + id).val(data);
       let temp = document.getElementById("temp" + id);
       temp.value = data;
+      reset2(id);
     },
     error: function (xhr, status, error) {
       console.error(xhr, status, error);
@@ -240,4 +237,30 @@ function delCom(target, parent = 0) {
       $("#count" + parent).html(parseInt($("#count" + parent).text()) - 1);
     }
   });
+}
+
+// auto resize text area
+function div2text(id) {
+  $("#div" + id).replaceWith(
+    "<textarea id='txtComment" +
+      id +
+      "' name='txtComment' maxlength='250' rows='3' class='form-control'>" +
+      $("#div" + id)
+        .html()
+        .trim() +
+      "</textarea>"
+  );
+  $("#txtComment" + id).focus();
+
+  var prevInputVal = $("#txtComment" + id).val();
+  $("#txtComment" + id)
+    .val("")
+    .focus()
+    .val(prevInputVal);
+}
+
+function text2div(id, text) {
+  $("#txtComment" + id).replaceWith(
+    "<div id='div" + id + "'>" + text + "</div>"
+  );
 }

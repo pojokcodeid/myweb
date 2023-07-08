@@ -39,21 +39,22 @@
       <input type="hidden" id="comid<?= $item['comment_id'] ?>" name="comid" value="<?= $item['comment_id'] ?>">
       <input type="hidden" id="defaultVal<?= $item['comment_id'] ?>" value="<?= $item['comment'] ?>">
       <div class="col-lg-12">
-        <textarea disabled class="form-control-plaintext" id="txtComment<?= $item['comment_id'] ?>" name="txtComment"
-          rows="3"><?= $item['comment'] ?></textarea>
+        <div id="div<?= $item['comment_id'] ?>">
+          <?= $item['comment'] ?>
+        </div>
       </div>
       <div class="row justify-content-between">
         <div class="col-6">
           <div class="small d-flex justify-content-start mt-2">
-            <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+            <a href="#!" class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
               <i class="bi bi-hand-thumbs-up"></i>&nbsp;<p class="mb-0">0</p>
             </a>
-            <a href="#!" class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+            <a href="#!" class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
               <i class="bi bi-hand-thumbs-down"></i>&nbsp;
               <p class="mb-0">0</p>
             </a>
             <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
-              class="btn btn-outline-success btn-sm d-flex align-items-center me-3 text-decoration-none">
+              class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
               <i class="bi bi-chat-left-text"></i></i>&nbsp;
               <p class="mb-0" id="count<?= $item['comment_id'] ?>">
                 0
