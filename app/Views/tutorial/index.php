@@ -292,6 +292,7 @@ $lastElement = end($list);
 
                   <!-- parent start -->
                   <div id="containerComment<?= $item['comment_id'] ?>">
+                    <div>&nbsp;</div>
                     <?php
                     foreach ($item['parent'] as $parent):
                       ?>
@@ -375,7 +376,7 @@ $lastElement = end($list);
                 <ul class="pagination pagination-sm">
                   <?php if ($currpage > 1): ?>
                     <li class="page-item">
-                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/?page=' . $currpage - 1 ?>"
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '?page=' . $currpage - 1 ?>"
                         aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                       </a>
@@ -391,13 +392,13 @@ $lastElement = end($list);
                     }
                     ?>
                     <li class="page-item"><a class="page-link <?= $cpage ?>"
-                        href="<?= base_url('tutorial/') . $slug . '/?page=' . $i ?>">
+                        href="<?= base_url('tutorial/') . $slug . '?page=' . $i ?>">
                         <?= $i ?>
                       </a></li>
                   <?php endfor ?>
                   <?php if ($currpage < $count): ?>
                     <li class="page-item">
-                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/?page=' . $currpage + 1 ?>"
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '?page=' . $currpage + 1 ?>"
                         aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                       </a>
