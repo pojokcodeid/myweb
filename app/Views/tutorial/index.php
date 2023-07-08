@@ -213,7 +213,8 @@ $lastElement = end($list);
                               <i class="bi bi-hand-thumbs-down"></i>&nbsp;
                               <p class="mb-0">0</p>
                             </a>
-                            <a href="#!" data-bs-target="#nestedComment<?= $item['comment_id'] ?>" data-bs-toggle="modal"
+                            <a href="javascript:void(0)" data-bs-target="#nestedComment<?= $item['comment_id'] ?>"
+                              data-bs-toggle="modal"
                               class="btn btn-outline-success b-xs d-flex align-items-center me-2 text-decoration-none">
                               <i class="bi bi-chat-left-text"></i></i>&nbsp;
                               <p class="mb-0" id="count<?= $item['comment_id'] ?>">
@@ -250,14 +251,16 @@ $lastElement = end($list);
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <input type="hidden" name="comid" value="<?= $item['comment_id'] ?>">
+                            <input type="hidden" class="comid" name="comid" value="<?= $item['comment_id'] ?>">
                             <div class="form-outline w-100">
-                              <textarea class="form-control" maxlength="200" id="txtComment" name="txtComment"
-                                rows="4"></textarea>
+                              <textarea class="form-control commentText" maxlength="250" id="txtCommentData"
+                                name="txtComment" rows="4"></textarea>
                             </div>
                           </div>
                           <div class="modal-footer border-0">
-                            <button type="submit" class="btn btn-primary">Kirim</button>
+                            <button
+                              onclick="commentFrm(<?= $item['comment_id'] ?>,'<?= base_url('nestedComment2/') . $slug . '/' . $content['id'] ?>')"
+                              type="button" class="btn btn-primary">Kirim</button>
                           </div>
                         </form>
                       </div>
@@ -266,78 +269,80 @@ $lastElement = end($list);
                   <!-- end modal -->
 
                   <!-- parent start -->
-                  <?php
-                  foreach ($item['parent'] as $parent):
-                    ?>
-                    <div class="ms-3 d-flex flex-start mt-2 p-2 rounded shadow-sm"
-                      id="container<?= $parent['comment_id'] ?>">
-                      <a class="me-3" href="#">
-                        <img class="rounded-circle shadow-1-strong" src="<?= base_url('img/profile/') . $parent['image'] ?>"
-                          alt="avatar" width="50" height="50" />
-                      </a>
-                      <div class="flex-grow-1 flex-shrink-1">
-                        <div>
-                          <div class="d-flex justify-content-between align-items-center">
-                            <p class="mb-1">
-                              <?= ucwords($parent['nama']) ?> <span class="small">-
-                                <?= date_format(date_create($parent['created_at']), "Y M d H:i") ?>
-                                &nbsp;
-                              </span>
-                            </p>
-                            <?php if (session('user_id') == $parent['user_id']): ?>
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
-                                  data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                  <li><a class="dropdown-item" onclick="editMode(<?= $parent['comment_id'] ?>)"
-                                      href="javascript:void(0);">Ubah</a>
-                                  </li>
-                                  <li><a class="dropdown-item"
-                                      href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>',<?= $parent['parent_id'] ?>);">Delete</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            <?php endif ?>
-                          </div>
-                          <p class="small mb-0">
-                            <!-- start -->
-                          <form action="">
-                            <input type="hidden" id="targetUrl<?= $parent['comment_id'] ?>"
-                              value="<?= base_url('commentUpdate/') . $slug ?>">
-                            <input type="hidden" id="temp<?= $parent['comment_id'] ?>" value="<?= $parent['comment'] ?>">
-                            <input type="hidden" id="comid<?= $parent['comment_id'] ?>" name="comid"
-                              value="<?= $parent['comment_id'] ?>">
-                            <input type="hidden" id="defaultVal<?= $parent['comment_id'] ?>"
-                              value="<?= $parent['comment'] ?>">
-                            <div class="col-lg-12">
-                              <div id="div<?= $parent['comment_id'] ?>">
-                                <?= $parent['comment'] ?>
-                              </div>
+                  <div id="containerComment<?= $item['comment_id'] ?>">
+                    <?php
+                    foreach ($item['parent'] as $parent):
+                      ?>
+                      <div class="ms-3 d-flex flex-start mt-2 p-2 rounded shadow-sm"
+                        id="container<?= $parent['comment_id'] ?>">
+                        <a class="me-3" href="#">
+                          <img class="rounded-circle shadow-1-strong"
+                            src="<?= base_url('img/profile/') . $parent['image'] ?>" alt="avatar" width="50" height="50" />
+                        </a>
+                        <div class="flex-grow-1 flex-shrink-1">
+                          <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="mb-1">
+                                <?= ucwords($parent['nama']) ?> <span class="small">-
+                                  <?= date_format(date_create($parent['created_at']), "Y M d H:i") ?>
+                                  &nbsp;
+                                </span>
+                              </p>
+                              <?php if (session('user_id') == $parent['user_id']): ?>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-link dropdown-toggle text-decoration-none"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                  </button>
+                                  <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" onclick="editMode(<?= $parent['comment_id'] ?>)"
+                                        href="javascript:void(0);">Ubah</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                        href="javascript:delCom('<?= base_url('commentDelete/') . $slug . '/' . $parent['comment_id'] ?>',<?= $parent['parent_id'] ?>);">Delete</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              <?php endif ?>
                             </div>
-                            <div class="row justify-content-between">
-                              <div class="col-6">
-
-                              </div>
-                              <!--  -->
-                              <div class="col-6">
-                                <div id="bSubmit<?= $parent['comment_id'] ?>"
-                                  class="gap-1 d-flex justify-content-end visually-hidden mt-2">
-                                  <button onclick="reset2(<?= $parent['comment_id'] ?>)" class="btn b-xs btn-secondary"
-                                    type="button">Reset</button>
-                                  <button onclick="submitFrm(<?= $parent['comment_id'] ?>)" type="button"
-                                    class="btn b-xs btn-primary" type="button">Ubah</button>
+                            <p class="small mb-0">
+                              <!-- start -->
+                            <form action="">
+                              <input type="hidden" id="targetUrl<?= $parent['comment_id'] ?>"
+                                value="<?= base_url('commentUpdate/') . $slug ?>">
+                              <input type="hidden" id="temp<?= $parent['comment_id'] ?>" value="<?= $parent['comment'] ?>">
+                              <input type="hidden" id="comid<?= $parent['comment_id'] ?>" name="comid"
+                                value="<?= $parent['comment_id'] ?>">
+                              <input type="hidden" id="defaultVal<?= $parent['comment_id'] ?>"
+                                value="<?= $parent['comment'] ?>">
+                              <div class="col-lg-12">
+                                <div id="div<?= $parent['comment_id'] ?>">
+                                  <?= $parent['comment'] ?>
                                 </div>
                               </div>
-                            </div>
-                          </form>
-                          <!--  end -->
-                          </p>
+                              <div class="row justify-content-between">
+                                <div class="col-6">
+
+                                </div>
+                                <!--  -->
+                                <div class="col-6">
+                                  <div id="bSubmit<?= $parent['comment_id'] ?>"
+                                    class="gap-1 d-flex justify-content-end visually-hidden mt-2">
+                                    <button onclick="reset2(<?= $parent['comment_id'] ?>)" class="btn b-xs btn-secondary"
+                                      type="button">Reset</button>
+                                    <button onclick="submitFrm(<?= $parent['comment_id'] ?>)" type="button"
+                                      class="btn b-xs btn-primary" type="button">Ubah</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                            <!--  end -->
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  <?php endforeach ?>
+                    <?php endforeach ?>
+                  </div>
                   <!-- parent end -->
 
                 </div>

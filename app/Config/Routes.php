@@ -38,6 +38,7 @@ $routes->post('/tutorial/comment2/(:segment)/(:segment)', 'Tutorial::comment2/$1
 $routes->post('/commentUpdate/(:segment)', 'Tutorial::commentUpdate/$1');
 $routes->get('/commentDelete/(:segment)/(:segment)', 'Tutorial::commentDelete/$1/$2');
 $routes->post('/nestedComment/(:segment)/(:segment)', 'Tutorial::nestedComment/$1/$2');
+$routes->post('/nestedComment2/(:segment)/(:segment)', 'Tutorial::nestedComment2/$1/$2');
 $routes->get('/kategori/(:segment)', 'Kategori::index/$1');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register/insert', 'Auth::insert');

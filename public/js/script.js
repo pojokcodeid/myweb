@@ -223,6 +223,54 @@ function insertFrm(url) {
     },
   });
 }
+function commentFrm(id, url) {
+  var text = $("#nestedComment" + id + " #txtCommentData")
+    .val()
+    .trim();
+  if (text == "") {
+    Swal.fire({
+      title: "Error!",
+      text: "Input Komentar Masih Kosong",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
+    return false;
+  }
+  // ambil url
+  let targetUrl = url;
+  let comid = $("#nestedComment" + id + " .comid")
+    .val()
+    .trim();
+  $.ajax({
+    type: "POST",
+    url: targetUrl,
+    data: {
+      txtComment: text,
+      comid: comid,
+    },
+    cache: false,
+    success: function (data) {
+      $("#nestedComment" + id).modal("hide");
+      $(".commentText")[0].value = "";
+      $(".commentText").html("");
+      function insertAfter(newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+      }
+      function addNew(data) {
+        let contentComment = document.getElementById("containerComment" + id);
+        let div = document.createElement("div");
+        div.innerHTML = data;
+        insertAfter(div, contentComment.lastElementChild);
+      }
+      addNew(data);
+      // update count parent
+      $("#count" + id).html(parseInt($("#count" + id).text()) + 1);
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr, status, error);
+    },
+  });
+}
 
 function delCom(target, parent = 0) {
   $.get(target, function (data, status) {

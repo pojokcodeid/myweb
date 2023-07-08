@@ -252,4 +252,50 @@ class Tutorial extends BaseController
 			return redirect()->to(base_url('tutorial/' . $slug));
 		}
 	}
+	public function nestedComment2($slug, $id)
+	{
+		// pastikan user login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		// validasi input
+		$validationRule = [
+			'txtComment' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Komentar harus diisi'
+				]
+			]
+		];
+		// redirect error
+		if (!$this->validate($validationRule)) {
+			session()->setFlashdata('errors', $this->validator->getErrors());
+			return redirect()->to(base_url('tutorial/' . $slug));
+		}
+		// process
+		$comment = $this->request->getVar('txtComment');
+		$data = [
+			'user_id' => session('user_id'),
+			'tutorial_id' => $id,
+			'comment' => $comment,
+			'created_at' => date('Y-m-d H:i:s'),
+			'parent_id' => $this->request->getVar('comid')
+		];
+		$commentModel = new CommentModel();
+		$process = $commentModel->save($data);
+		if ($process) {
+			$last_insert_id = $commentModel->getInsertID();
+			$data2 = [
+				'slug' => $slug,
+				'parent' => $this->tutorialModel->getParentInert($last_insert_id)
+			];
+			return view('tutorial/nestedComment', $data2);
+		} else {
+			$error = [
+				'errors' => 'Gagal menyimpan data'
+			];
+			session()->setFlashdata('errors', $error);
+			echo "Telah Terjadi Eroor";
+		}
+	}
 }

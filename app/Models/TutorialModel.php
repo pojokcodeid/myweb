@@ -58,4 +58,18 @@ class TutorialModel extends Model
     return $stmt->getResultArray();
   }
 
+  public function getParentInert($id)
+  {
+    $db = db_connect();
+    $query = "
+    select 
+      u.user_id,c.comment_id,c.comment,c.parent_id,
+      c.created_at, u.nama, u.image
+    from comment c inner join `user` u on(c.user_id=u.user_id)
+    where c.comment_id = ?
+      order by c.created_at asc;";
+    $stmt = $db->query($query, [$id]);
+    return $stmt->getRowArray();
+  }
+
 }
