@@ -356,4 +356,42 @@ class Tutorial extends BaseController
 			echo 'Process error';
 		}
 	}
+	// function dislike action
+	public function dislike($id)
+	{
+		// pstikan sudah login
+		if (!session('user_id')) {
+			return redirect()->to(base_url('login'));
+		}
+		$likeModel = new LikeModel();
+		// cek sudah pernah like atau belum
+		$hasilCheck = $likeModel->getDislikeExists($id, session('user_id'));
+		$status = null;
+		if ($hasilCheck) {
+			// hapus artinya tidak jadi like
+			$process = $likeModel->deleteDislike($id, session('user_id'));
+			$status = 0;
+		} else {
+			$status = 1;
+			// insert like baru
+			$process = $likeModel->save([
+				'user_id' => session('user_id'),
+				'comment_id' => $id,
+				'likests' => 0,
+				'dislike' => 1
+			]);
+		}
+		// dapatkan jumlah like
+		if ($process) {
+			$count = $likeModel->getLikeCount($id);
+			$hasil = [
+				'dislike' => is_null($count['dislike_count']) ? 0 : $count['dislike_count'],
+				'comment_id' => $id,
+				'status' => $status
+			];
+			echo json_encode($hasil);
+		} else {
+			echo 'Process error';
+		}
+	}
 }

@@ -227,7 +227,8 @@ $lastElement = end($list);
                               class="btn <?= $bg ?> b-xs d-flex align-items-center me-2 text-decoration-none">
                               <?= $iconlike . ' ' . $likeCount ?>
                             </a>
-                            <a href="#!"
+                            <a id="dislike<?= $item['comment_id'] ?>"
+                              href="javascript:dislike(<?= $item['comment_id'] ?>,'<?= base_url('dislike/') . $item['comment_id'] ?>')"
                               class="btn <?= $bgdc ?> b-xs d-flex align-items-center me-2 text-decoration-none">
                               <i class="bi bi-hand-thumbs-down"></i>&nbsp;
                               <p class="mb-0">

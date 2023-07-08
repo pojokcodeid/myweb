@@ -345,3 +345,35 @@ function like(id, url) {
     },
   });
 }
+function dislike(id, url) {
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {
+      id: id,
+    },
+    cache: false,
+    success: function (data) {
+      // ubah icon dan jumlahnya
+      const obj = JSON.parse(data);
+      if (obj.status == 1) {
+        // process like ubah icon likenya
+        $("#dislike" + id).removeClass("btn-outline-success");
+        $("#dislike" + id).addClass("btn-success");
+        $("#dislike" + id).html(
+          '<i class="bi bi-hand-thumbs-down-fill"></i> ' + obj.dislike
+        );
+      } else {
+        // hapus like
+        $("#dislike" + id).addClass("btn-outline-success");
+        $("#dislike" + id).removeClass("btn-success");
+        $("#dislike" + id).html(
+          '<i class="bi bi-hand-thumbs-down"></i> ' + obj.dislike
+        );
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr, status, error);
+    },
+  });
+}

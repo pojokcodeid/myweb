@@ -34,7 +34,16 @@ class LikeModel extends Model
   public function deleteLike($comment_id, $user_id)
   {
     $db = db_connect();
-    $query = "delete from like_dislike where comment_id = ? and user_id = ?";
+    $query = "delete from like_dislike where comment_id = ? and user_id = ? and likests=1";
+    $stmt = $db->query($query, [$comment_id, $user_id]);
+    return $stmt;
+  }
+
+
+  public function deleteDislike($comment_id, $user_id)
+  {
+    $db = db_connect();
+    $query = "delete from like_dislike where comment_id = ? and user_id = ? and dislike=1";
     $stmt = $db->query($query, [$comment_id, $user_id]);
     return $stmt;
   }
@@ -42,7 +51,15 @@ class LikeModel extends Model
   public function getLikeExists($comment_id, $user_id)
   {
     $db = db_connect();
-    $query = "select * from like_dislike where comment_id = ? and user_id = ?";
+    $query = "select * from like_dislike where comment_id = ? and user_id = ? and likests=1";
+    $stmt = $db->query($query, [$comment_id, $user_id]);
+    return $stmt->getRowArray();
+  }
+
+  public function getDislikeExists($comment_id, $user_id)
+  {
+    $db = db_connect();
+    $query = "select * from like_dislike where comment_id = ? and user_id = ? and dislike=1";
     $stmt = $db->query($query, [$comment_id, $user_id]);
     return $stmt->getRowArray();
   }
