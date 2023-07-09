@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
 use App\Models\LikeModel;
+use App\Models\LogModel;
 use App\Models\TutorialModel;
 use App\Models\CommentModel;
 
@@ -99,6 +100,12 @@ class Tutorial extends BaseController
 			'count' => $ountpage,
 			'currpage' => $currentPage
 		];
+		// input log load page
+		$logModel = new LogModel();
+		$logModel->save([
+			'tutorial_id' => $content['id'],
+			'log_type' => 'view'
+		]);
 		return view('tutorial/index', $data);
 	}
 
