@@ -8,8 +8,10 @@
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><a href="http://localhost/blog/about"
                 class="nav-link p-0 text-body-secondary">Tentang Kami</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Hubungi Kami</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Kebijakan Privasi</a></li>
+            <li class="nav-item mb-2"><a href="http://localhost/blog/contact"
+                class="nav-link p-0 text-body-secondary">Hubungi Kami</a></li>
+            <li class="nav-item mb-2"><a href="http://localhost/blog/privasi"
+                class="nav-link p-0 text-body-secondary">Kebijakan Privasi</a></li>
           </ul>
         </div>
 

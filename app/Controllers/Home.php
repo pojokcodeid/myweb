@@ -34,4 +34,22 @@ class Home extends BaseController
 		];
 		return view('about', $data);
 	}
+	public function contact()
+	{
+		$data = [
+			'title' => 'Kontak',
+			'groupKategori' => $this->groupKategoriModel->findAll(),
+			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
+		];
+		return view('contact', $data);
+	}
+	public function privasi()
+	{
+		$data = [
+			'title' => 'Kebijakan Privasi',
+			'groupKategori' => $this->groupKategoriModel->findAll(),
+			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
+		];
+		return view('privasi', $data);
+	}
 }
