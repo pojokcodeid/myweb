@@ -112,7 +112,8 @@ $lastElement = end($list);
                 </tr>
               </table>
             </small>
-            <img src="../img/header/<?= $content['img_header'] ?>" alt="" class="img-fluid rounded mb-2 shadow-sm">
+            <img src="<?= base_url('img/header/') . $content['img_header'] ?>" alt=""
+              class="img-fluid rounded mb-2 shadow-sm">
             <div class="row gx-4 gx-lg-5 justify-content-center">
               <div class="col-md-12 col-lg-2 col-xl-12">
                 <?= $content['content'] ?>
@@ -376,7 +377,7 @@ $lastElement = end($list);
                 <ul class="pagination pagination-sm">
                   <?php if ($currpage > 1): ?>
                     <li class="page-item">
-                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '?page=' . $currpage - 1 ?>"
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/' . $currpage - 1 ?>"
                         aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                       </a>
@@ -392,13 +393,13 @@ $lastElement = end($list);
                     }
                     ?>
                     <li class="page-item"><a class="page-link <?= $cpage ?>"
-                        href="<?= base_url('tutorial/') . $slug . '?page=' . $i ?>">
+                        href="<?= base_url('tutorial/') . $slug . '/' . $i ?>">
                         <?= $i ?>
                       </a></li>
                   <?php endfor ?>
                   <?php if ($currpage < $count): ?>
                     <li class="page-item">
-                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '?page=' . $currpage + 1 ?>"
+                      <a class="page-link" href="<?= base_url('tutorial/') . $slug . '/' . $currpage + 1 ?>"
                         aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                       </a>

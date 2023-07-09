@@ -31,20 +31,16 @@ class Tutorial extends BaseController
 		];
 		return view('tutorial/index', $data);
 	}
-	public function view($slug)
+	public function view($slug, $page = 0)
 	{
 		$count = 2;
-		$page = 0;
 		$limit = 0;
 		$currentPage = 1;
-		if (isset($_GET['page'])) {
-			$page = $_GET['page'];
-			if ($page == 0) {
-				$page = 1;
-			}
-			$limit = ($page - 1) * $count;
-			$currentPage = $page;
+		if ($page == 0) {
+			$page = 1;
 		}
+		$limit = ($page - 1) * $count;
+		$currentPage = $page;
 		$categori = $this->kategoriModel->where('slug', $slug)->first();
 		$categoriItem = [];
 		$itemselected = $categori;

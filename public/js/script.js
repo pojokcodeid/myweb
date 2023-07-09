@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-
+  let bseurl = "http://localhost/blog/";
   const getStoredTheme = () => localStorage.getItem("theme");
   const setStoredTheme = (theme) => localStorage.setItem("theme", theme);
 
@@ -25,17 +25,17 @@
     ) {
       logo.style.display = "none";
       logow.style.display = "";
-      codestyle.href = "../hljs-onedark/onedark.css";
+      codestyle.href = bseurl + "hljs-onedark/onedark.css";
       document.documentElement.setAttribute("data-bs-theme", "dark");
     } else {
       if (theme === "dark") {
         logo.style.display = "none";
         logow.style.display = "";
-        codestyle.href = "../hljs-onedark/onedark.css";
+        codestyle.href = bseurl + "hljs-onedark/onedark.css";
       } else {
         logo.style.display = "";
         logow.style.display = "none";
-        codestyle.href = "../hljs-onedark/one-light.css";
+        codestyle.href = bseurl + "hljs-onedark/one-light.css";
       }
       document.documentElement.setAttribute("data-bs-theme", theme);
     }
@@ -52,11 +52,11 @@
     if (theme === "dark") {
       logo.style.display = "none";
       logow.style.display = "";
-      codestyle.href = "../hljs-onedark/onedark.css";
+      codestyle.href = bseurl + "hljs-onedark/onedark.css";
     } else if (theme === "light") {
       logo.style.display = "";
       logow.style.display = "none";
-      codestyle.href = "../hljs-onedark/one-light.css";
+      codestyle.href = bseurl + "hljs-onedark/one-light.css";
     }
 
     if (!themeSwitcher) {

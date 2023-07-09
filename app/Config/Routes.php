@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/about', 'Home::about');
 $routes->get('/tutorial', 'Tutorial::index');
 $routes->get('/tutorial/(:segment)', 'Tutorial::view/$1');
+$routes->get('/tutorial/(:segment)/(:any)', 'Tutorial::view/$1/$2');
 $routes->post('/tutorial/comment/(:segment)/(:segment)', 'Tutorial::comment/$1/$2');
 $routes->post('/tutorial/comment2/(:segment)/(:segment)', 'Tutorial::comment2/$1/$2');
 $routes->post('/commentUpdate/(:segment)', 'Tutorial::commentUpdate/$1');
