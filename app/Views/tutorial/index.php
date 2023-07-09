@@ -56,11 +56,15 @@ $lastElement = end($list);
         <div class="flex-shrink-0 bg-body rounded p-3 mt-3 shadow-sm">
           <h5><i class="bi bi-newspaper"></i> Populer Tutorial</h5>
           <div class="list-group list-group-light">
-            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">1. HTML - Form
-              Registration</a>
-            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">2. Javascript Validator</a>
-            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">3. Javascript DOM</a>
-            <a href="#" class="list-group-item list-group-item-action px-3 border-0 ripple">4. Typescript OOP</a>
+            <?php
+            $row = 1;
+            foreach ($topTutorial as $top):
+              ?>
+              <a href="<?= base_url('tutorial/' . $top['slug']) ?>"
+                class="list-group-item list-group-item-action px-3 border-0 ripple">
+                <?= $row++ . ' ' . $top['nama'] ?>
+              </a>
+            <?php endforeach ?>
           </div>
         </div>
       </div>

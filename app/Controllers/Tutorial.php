@@ -53,6 +53,9 @@ class Tutorial extends BaseController
 			$categoriItem = $this->kategoriModel->where('parent', $categori['id'])->findAll();
 		}
 		$content = $this->tutorialModel->where('kategoriid', $itemselected['id'])->first();
+		// dapatkan top 10 populer
+		$logModel = new LogModel();
+		$top10 = $logModel->topTutorial();
 		// get list commnet top 5
 		$list = $this->tutorialModel->getCommentLimit($content['id'], $count, $limit);
 		// dapatkan data like dislike
@@ -98,7 +101,8 @@ class Tutorial extends BaseController
 			'slug' => $slug,
 			'comment' => $hasil,
 			'count' => $ountpage,
-			'currpage' => $currentPage
+			'currpage' => $currentPage,
+			'topTutorial' => $top10
 		];
 		// input log load page
 		$logModel = new LogModel();
