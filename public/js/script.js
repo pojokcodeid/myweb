@@ -341,6 +341,14 @@ function like(id, url) {
           '<i class="bi bi-hand-thumbs-up"></i> ' + obj.like
         );
       }
+      if (obj.like == "Harus Login") {
+        Swal.fire({
+          title: "Error!",
+          text: "Anda belum login",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
     },
     error: function (xhr, status, error) {
       console.error(xhr, status, error);
@@ -372,6 +380,14 @@ function dislike(id, url) {
         $("#dislike" + id).html(
           '<i class="bi bi-hand-thumbs-down"></i> ' + obj.dislike
         );
+      }
+      if (obj.dislike == "Harus Login") {
+        Swal.fire({
+          title: "Error!",
+          text: "Anda belum login",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
       }
     },
     error: function (xhr, status, error) {

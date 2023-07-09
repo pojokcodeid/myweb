@@ -337,7 +337,12 @@ class Tutorial extends BaseController
 	{
 		// pstikan sudah login
 		if (!session('user_id')) {
-			return redirect()->to(base_url('login'));
+			// return redirect()->to(base_url('login'));
+			$hasil = [
+				'like' => 'Harus Login'
+			];
+			echo json_encode($hasil);
+			die();
 		}
 		$likeModel = new LikeModel();
 		// cek sudah pernah like atau belum
@@ -375,7 +380,12 @@ class Tutorial extends BaseController
 	{
 		// pstikan sudah login
 		if (!session('user_id')) {
-			return redirect()->to(base_url('login'));
+			// return redirect()->to(base_url('login'));
+			$hasil = [
+				'dislike' => 'Harus Login'
+			];
+			echo json_encode($hasil);
+			die();
 		}
 		$likeModel = new LikeModel();
 		// cek sudah pernah like atau belum
