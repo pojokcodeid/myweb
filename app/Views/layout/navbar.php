@@ -33,10 +33,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
         <li class="nav-item dropdown dropdown-c">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link p-2 rounded dropdown-toggle" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-grid-fill"></i> Tutorial
           </a>
           <div class="dropdown-menu dropdown-menu-c" aria-labelledby="navbarDropdown">
@@ -59,7 +59,14 @@
             <?php endforeach ?>
           </div>
         </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link p-2 rounded"><i class="bi bi-card-text"></i> Arikel</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link p-2 rounded"><i class="bi bi-chat-text-fill"></i> Forum</a>
+        </li>
       </ul>
+
       <form class="d-flex">
         <input class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
         <div class="dropdown bd-mode-toggle">
