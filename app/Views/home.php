@@ -10,17 +10,17 @@
           <div class="p-5">
             <h1 class="display-5 fw-bold">Pojok Code</h1>
             <p class="col-md-8 fs-4">Berbagi Code dan Tutorial.</p>
-            <button class="btn btn-primary btn-lg" type="button">Mulai Belajar</button>
-            <button class="btn btn-outline-primary btn-lg mt-1" type="button">Daftar</button>
+            <a href="#lstKategori" class="btn btn-primary btn-lg">Mulai Belajar</a>
+            <a href="<?= base_url('register') ?>" class="btn btn-outline-primary btn-lg mt-1">Daftar</a>
           </div>
         </div>
         <div class="col-lg-6">
-          <img src="./img/admin.png" alt="" class="img-fluid avatar">
+          <img src="<?= base_url('img/admin.png') ?>" alt="" class="img-fluid avatar">
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="lstKategori">
     <h4 class="text-primary"><strong>Kategori</strong></h4>
     <h2><strong>Belajar Apa Sekarang ?</strong></h2>
     <p class="lead">
