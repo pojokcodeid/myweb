@@ -1,5 +1,5 @@
 <!-- <div class="row bg-light-subtle"> -->
-<div class="row text-white mt-2" style="background:#1e293b;">
+<div class="row text-white mt-2 bg-footer">
   <footer class="py-5">
     <div class="container">
       <div class="row">

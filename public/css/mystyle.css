@@ -346,3 +346,7 @@
   /* cursor: default !important; */
   padding-left: 15px !important;
 }
+
+.bg-footer {
+  background: #1e293b !important;
+}
