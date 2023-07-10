@@ -151,24 +151,29 @@
       <div class="main-timeline">
         <?php
         $posisi = "";
-        for ($i = 0; $i < 5; $i++):
+        $i = 0;
+        foreach ($comments as $comment):
           if (($i % 2) == 0) {
             $posisi = "left";
           } else {
             $posisi = "right";
           }
+          $i++;
           ?>
           <div class="timeline <?= $posisi ?>">
-            <div class="card">
+            <div class="card border-0 shadow-sm">
               <div class="card-body p-4">
-                <h3>Putra</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                  mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                  dignissim per, habeo iusto primis ea eam.</p>
+                <h3>
+                  <img src="<?= base_url('img/profile/') . $comment['image'] ?>" class="rounded-circle"
+                    alt="<?= $comment['nama'] ?>" width="30" height="30"> <?= $comment['nama'] ?>
+                </h3>
+                <p class="mb-0">
+                  <?= $comment['comment'] ?>
+                </p>
               </div>
             </div>
           </div>
-        <?php endfor; ?>
+        <?php endforeach ?>
       </div>
     </div>
   </section>

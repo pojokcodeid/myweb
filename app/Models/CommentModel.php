@@ -33,4 +33,24 @@ class CommentModel extends Model
     return $stmt->getRowArray();
   }
 
+  public function getTop5()
+  {
+    $db = db_connect();
+    $sql = "select
+          c.comment,
+          u.nama,
+          u.image,
+          c.updated_at
+        from
+          comment c
+        inner join `user` u on
+          (c.user_id = u.user_id)
+        where c.parent_id = 0
+        order by
+          c.updated_at desc
+        limit 5;";
+    $stmt = $db->query($sql);
+    return $stmt->getResultArray();
+  }
+
 }

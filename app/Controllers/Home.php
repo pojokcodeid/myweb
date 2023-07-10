@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CommentModel;
 use App\Models\GroupKategoriModel;
 use App\Models\KategoriModel;
 use App\Models\UserModel;
@@ -17,10 +18,12 @@ class Home extends BaseController
 	}
 	public function index()
 	{
+		$comment = new CommentModel();
 		$data = [
 			'title' => 'Home',
 			'groupKategori' => $this->groupKategoriModel->findAll(),
-			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll()
+			'allKategori' => $this->kategoriModel->where('is_root', 1)->findAll(),
+			'comments' => $comment->getTop5()
 		];
 		return view('home', $data);
 	}
