@@ -130,23 +130,6 @@
         </div>
       </div>
       <div class="row">
-        <!-- <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav> -->
         <div class="col mb-5">
           <a href="#" class="btn btn-sm btn-outline-info" role="button">Explore Lebih Lanjut<i
               class="bi bi-arrow-right-short" style="font-size: 24px"></i></a>
@@ -161,71 +144,31 @@
       <h4 class="text-primary"><strong>Review</strong></h4>
       <h2><strong>Apa Kata Mereka ?</strong></h2>
       <p class="lead">
-        Testimoni dari yang sudah belajar disini...
+        Komentar dari pembaca ...
       </p>
     </div>
     <div class="container py-5">
       <div class="main-timeline">
-        <div class="timeline left">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Putra</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
+        <?php
+        $posisi = "";
+        for ($i = 0; $i < 5; $i++):
+          if (($i % 2) == 0) {
+            $posisi = "left";
+          } else {
+            $posisi = "right";
+          }
+          ?>
+          <div class="timeline <?= $posisi ?>">
+            <div class="card">
+              <div class="card-body p-4">
+                <h3>Putra</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
+                  mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
+                  dignissim per, habeo iusto primis ea eam.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="timeline right">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Jono</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="timeline left">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Agung Hamdan</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="timeline right">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Belekik</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="timeline left">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Jambrud</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
-        <div class="timeline right">
-          <div class="card">
-            <div class="card-body p-4">
-              <h3>Test</h3>
-              <p class="mb-0">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto
-                mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua
-                dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
+        <?php endfor; ?>
       </div>
     </div>
   </section>
